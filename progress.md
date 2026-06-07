@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1D content DONE (site.ts + quiz.ts written + verified); next = Stage 1E page sweep (foundation wave → parallel pages)
+**Current Phase:** Phase 1 — Stage 1E ALL PAGES DONE (35 routes, `next build` clean); next = Stage 1F SEO/AEO (sitemap, robots, StructuredData, JSON-LD)
 
 ---
 
@@ -17,8 +17,8 @@
 | 1 | Research + Design System (Stage 1A scan, 1B design-synthesizer) | ✅ Done |
 | 2 | Scaffold (Stage 1C) | ✅ Done (bdb74f4) |
 | 3 | Content + Animation / Hero (Stage 1D) | ✅ Done (hero + site.ts + quiz.ts) |
-| 4 | All Pages — core + blog + booking (Stage 1E) | 🔄 Foundation wave next |
-| 5 | SEO + AEO + GEO (Stage 1F) | ⬜ Not Started |
+| 4 | All Pages — core + blog + booking (Stage 1E) | ✅ Done (35 routes build clean) |
+| 5 | SEO + AEO + GEO (Stage 1F) | 🔄 Next |
 | 6 | Assets — hero + blog images (Stage 1G) | ⬜ Not Started |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
@@ -162,3 +162,24 @@
 **Current State:** Content data layer complete + typechecks clean. Hero already wired. Page components not built yet.
 **Next Session Starts At:** Stage 1E foundation wave — shared layout primitives (Section/Container with radial-gradient + ambient-motion backgrounds, animation wrappers, Card, instrument-readout DataTable), SiteHeader nav (with ⬥ Pricing marker + Request-a-Strategic-Conversation CTA), global Footer, and the custom BookingCalendar (+ /api/calendly/* demo-seeded). THEN parallel page agents consuming that contract.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts flagged in site.ts: real LinkedIn URL, registered entity name, USPTO serial, formal certifications, real case-study numbers/named primes (all [LAUNCH-BLOCKER] or [MISSING] for public launch; demo runs on DEMO COPY).
+
+---
+
+### Session 2 — continued (Stage 1E — full page sweep, all 35 routes build clean)
+**Intent:** Build the entire Stage 1E page layer on top of the content data layer.
+**Completed (4 delegated waves, each verified + atomically committed):**
+- **Foundation (9449d12):** `components/animations/` (FadeUp/SlideIn/Stagger, triggerOnce per Error #24) + `components/ui/` (Container, **Section** = the radial-only/never-flat/never-white background + 6 ambient-motion enforcement point, Eyebrow, Button/CtaLink, Card, StatusRow, InstrumentTable) + globals.css ambient classes (amb-orbs/drift/ash/twinkle/grain/static + reduced-motion freeze).
+- **Chrome + booking (446c1a5):** SiteHeader (fixed transparent-over-hero, scroll underline, opaque mobile drawer w/ all nav items incl. ⬥ Pricing + CTA + inner X — Error #38), Footer (dark bookend, conditional LinkedIn), **PageHeader** (interior-page nav clearance baked in — Error #40 forget-proof, used by every interior page), **BookingCalendar** (custom branded, self-sufficient surface Error #54, demo-seeded deterministic slots) + `/api/calendly/slots` + `/api/calendly/book` (Next16 handlers, origin-hardened Error #66). Wired into layout.tsx (no global main offset — hero stays full-bleed).
+- **Pages wave 3a (b2a30cf):** homepage 8-band rhythm (D/L alternation ending light before dark footer; problem instrument-panel → method bento → proof stats → staggered engagements → diagnostic nudge → editorial blog preview → capacity + inline BookingCalendar), /about (proof-of-operating-role trust core, no headshot), /method (Standard Work 2.0 4 pillars + fault→cleared InstrumentTable), /engagements + 3 SSG detail routes (no pricing), /booking.
+- **Pages wave 3b (ff7f515):** /diagnostic (full-page archetype self-diagnostic, auto-advance, NO email gate, result restates answers + inline BookingCalendar via scoreQuiz), /testimonials (36 DEMO-COPY, 3×3 grid 9/page×4, engagement-type filter), /faq (accessible accordion, AEO direct-answer-first), /contact (routes to booking, no maps, conditional LinkedIn).
+- **Pages wave 3c (cd5b7cd):** /niches/[slug]×3 (loss-framed openers), /blog index + /blog/[slug]×12 (editorial AEO hub, direct-answer-first, **bodies deferred** — no fabricated bodies), /pricing (internal sales tool, fixed tiers $1.5k/$3k/$5.5k, ROI calc, comparison, noindex, no Google/deposit/shop), /tools/cmmc-readiness (forwardable self-scorer, no email gate, banded result).
+**Files touched:** `web/src/components/{animations,ui,layout,home,pricing}/*`, `web/src/components/{Hero(existing),BookingCalendar}.tsx`, `web/src/app/{layout,page,globals.css}` + every route under `web/src/app/{about,method,engagements,booking,diagnostic,testimonials,faq,contact,niches,blog,pricing,tools,api/calendly}/`, `web/src/data/site.ts` (dead-route fix).
+**Decisions Made:**
+- Foundation built as ONE coherent agent (shared design vocabulary = consistency anchor) BEFORE parallelizing pages — dependency exception to the parallel rule.
+- Nav clearance via a `PageHeader` component (Error #40 forget-proof) rather than a global `<main>` offset, so the full-bleed movie hero isn't banded.
+- Blog article BODIES deferred to a dedicated later wave (token-bounded); post template renders the AEO direct-answer + a clearly-marked "briefing in preparation" callout, NOT fabricated bodies.
+**Discovered / fixed:** dead-link bug — `gatedTool.slug` ("cmmc-readiness-scorer") + footer href pointed at a non-existent route; the real scorer is `/tools/cmmc-readiness`. Fixed slug + footer href (Page Wiring Rule). Caught + fixed 6 string-value em-dash leaks + a 37th testimonial in Stage 1D.
+**Observations to carry into the Prospect-Journey audit (1G.5):** (a) testimonials contain a 4th engagementType "Full-Time Leadership" (indices 4,16) that isn't one of the 3 named engagements — defensible (Garrett's history) but the /testimonials filter shows a 4th chip; review. (b) Nav intentionally excludes /testimonials, /faq, /contact, /niches, /tools (reachable via footer/links) — Stage 1F sitemap.ts MUST list every route per Page Wiring Rule.
+**Current State:** ALL Stage 1E pages built. `npm run build` clean: 35 routes (static + SSG + 2 dynamic API). Hero movie header live. No remote yet (no GitHub repo) → still unpushed (Always-Push deferred only by missing remote; add remote at infra/launch).
+**Next Session Starts At:** Stage 1F SEO/AEO — `sitemap.ts` (ALL routes, /pricing noindex), `robots.ts`, `StructuredData.tsx` (Person + ProfessionalService + Service JSON-LD with sameAs — Pattern #100, the personal-brand entity graph), Article + FAQPage JSON-LD, opengraph-image. THEN 1G blog card+header images (Higgsfield Flux 2, ≤4/batch) + blog article BODIES wave. THEN 1G.5 prospect-journey audit → 1H file audit → 1I multi-breakpoint browser audit (mandatory pre-ship, needs fresh context) → 1J /optimus-review.
+**Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged.
