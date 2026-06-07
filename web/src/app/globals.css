@@ -149,3 +149,199 @@ h1, h2, h3, h4 {
 }
 
 ::selection { background: var(--accent); color: var(--primary); }
+
+/* ============================================================
+   SECTION SYSTEM — radial gradients ONLY, no flat, no white.
+   (CLAUDE.md Homepage Section Architecture Rule.)
+   The base color is set inline on <section>; these classes paint
+   the radial overlay + ambient motion on the absolute z-0 layer.
+   Every .amb-* effect is GPU-cheap (transform/opacity/background-position)
+   and degrades to its STATIC radial gradient under prefers-reduced-motion.
+   Keep everything quiet: ≤0.3Hz peak, particle opacity ≤~0.15 (design-system §8).
+   ============================================================ */
+
+/* Tone-specific radial overlay (brass glow, off-center, low alpha). Always present,
+   even on motion="none" (.amb-static), so no section is ever a flat fill. */
+.sec-overlay-dark {
+  background:
+    radial-gradient(120% 90% at 12% 0%, rgba(184, 134, 75, 0.09) 0%, rgba(184, 134, 75, 0) 55%),
+    radial-gradient(140% 120% at 100% 100%, rgba(184, 134, 75, 0.05) 0%, rgba(184, 134, 75, 0) 60%);
+}
+.sec-overlay-light {
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(184, 134, 75, 0.07) 0%, rgba(184, 134, 75, 0) 55%),
+    radial-gradient(130% 120% at 0% 100%, rgba(166, 173, 182, 0.05) 0%, rgba(166, 173, 182, 0) 60%);
+}
+
+/* motion="none" — radial gradient only, no animated layer (text-dense sections). */
+.amb-static { /* overlay already painted by .sec-overlay-* — nothing to animate */ }
+
+/* --- .amb-orbs : 1–2 breathing radial orbs over the tone overlay (12s). --- */
+.amb-orbs::before,
+.amb-orbs::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.5;
+  will-change: transform, opacity;
+  background: radial-gradient(circle, rgba(184, 134, 75, 0.10) 0%, rgba(184, 134, 75, 0) 70%);
+}
+.amb-orbs::before {
+  width: 42vw; height: 42vw; top: -8vw; left: -6vw;
+  animation: breathe 12s ease-in-out infinite;
+}
+.amb-orbs::after {
+  width: 34vw; height: 34vw; bottom: -10vw; right: -4vw;
+  animation: breathe 12s ease-in-out infinite 6s;
+}
+
+/* --- .amb-drift : the radial gradient center crawls across background-position (28s). --- */
+.amb-drift::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  will-change: background-position;
+  background:
+    radial-gradient(60% 60% at 30% 40%, rgba(184, 134, 75, 0.08) 0%, rgba(184, 134, 75, 0) 60%);
+  background-size: 160% 160%;
+  background-position: 0% 0%;
+  animation: amb-drift-move 28s ease-in-out infinite alternate;
+}
+@keyframes amb-drift-move {
+  from { background-position: 0% 0%; }
+  to   { background-position: 100% 100%; }
+}
+
+/* --- .amb-ash : ~24 small brass particles drifting up + fading (CSS-only, very low opacity). --- */
+.amb-ash::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; height: 200%;
+  will-change: transform;
+  opacity: 0.12;
+  animation: amb-ash-rise 26s linear infinite;
+  background-repeat: repeat;
+  background-size: 100% 50%;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 90%, rgba(184,134,75,0.9) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 18% 70%, rgba(184,134,75,0.7) 50%, transparent 52%),
+    radial-gradient(1px 1px at 27% 85%, rgba(184,134,75,0.8) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 36% 60%, rgba(184,134,75,0.6) 50%, transparent 52%),
+    radial-gradient(1px 1px at 44% 95%, rgba(184,134,75,0.9) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 53% 75%, rgba(184,134,75,0.7) 50%, transparent 52%),
+    radial-gradient(1px 1px at 61% 88%, rgba(184,134,75,0.8) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 70% 65%, rgba(184,134,75,0.6) 50%, transparent 52%),
+    radial-gradient(1px 1px at 79% 92%, rgba(184,134,75,0.9) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 88% 72%, rgba(184,134,75,0.7) 50%, transparent 52%),
+    radial-gradient(1px 1px at 95% 84%, rgba(184,134,75,0.8) 50%, transparent 52%);
+}
+@keyframes amb-ash-rise {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* --- .amb-twinkle : a few low-density 4-point glimmers pulsing opacity. --- */
+.amb-twinkle::before,
+.amb-twinkle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+  background-repeat: no-repeat;
+}
+.amb-twinkle::before {
+  background-image:
+    radial-gradient(1.5px 1.5px at 22% 30%, rgba(217,165,90,0.9) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 68% 22%, rgba(217,165,90,0.8) 50%, transparent 52%),
+    radial-gradient(1px 1px at 84% 64%, rgba(217,165,90,0.9) 50%, transparent 52%);
+  opacity: 0.14;
+  animation: amb-twinkle-pulse 7s ease-in-out infinite;
+}
+.amb-twinkle::after {
+  background-image:
+    radial-gradient(1.5px 1.5px at 40% 72%, rgba(217,165,90,0.9) 50%, transparent 52%),
+    radial-gradient(1px 1px at 12% 58%, rgba(217,165,90,0.8) 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 56% 40%, rgba(217,165,90,0.9) 50%, transparent 52%);
+  opacity: 0.10;
+  animation: amb-twinkle-pulse 9s ease-in-out infinite 2.5s;
+}
+@keyframes amb-twinkle-pulse {
+  0%, 100% { opacity: 0.04; }
+  50%      { opacity: 0.16; }
+}
+
+/* --- .amb-grain : radial gradient + faint animated fine-grain noise overlay (8s). --- */
+.amb-grain::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  will-change: transform;
+  opacity: 0.05;
+  background-image:
+    radial-gradient(0.5px 0.5px at 10% 20%, rgba(230,232,235,0.8) 50%, transparent 52%),
+    radial-gradient(0.5px 0.5px at 30% 60%, rgba(230,232,235,0.7) 50%, transparent 52%),
+    radial-gradient(0.5px 0.5px at 50% 30%, rgba(230,232,235,0.8) 50%, transparent 52%),
+    radial-gradient(0.5px 0.5px at 70% 80%, rgba(230,232,235,0.7) 50%, transparent 52%),
+    radial-gradient(0.5px 0.5px at 90% 40%, rgba(230,232,235,0.8) 50%, transparent 52%);
+  background-size: 120px 120px;
+  animation: amb-grain-shift 8s steps(4) infinite;
+}
+@keyframes amb-grain-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-30px, 20px); }
+  50%  { transform: translate(20px, -25px); }
+  75%  { transform: translate(-15px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ----- Card hover: border brightens toward brass (~0.4 alpha), 200ms. No shadow. ----- */
+.card-hover {
+  transition: border-color 200ms ease;
+}
+.card-hover:hover {
+  border-color: rgba(184, 134, 75, 0.4);
+}
+
+/* ----- CTA buttons (design-system §5). Flat outlined, no shadow/glow. ----- */
+.btn-primary {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+.btn-secondary {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+  background: transparent;
+}
+.btn-secondary:hover {
+  border-color: var(--text-secondary);
+}
+.btn-ghost {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.btn-ghost:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Reduced motion: stop every ambient effect; the radial gradient stays (never flat). */
+@media (prefers-reduced-motion: reduce) {
+  .amb-orbs::before,
+  .amb-orbs::after,
+  .amb-drift::before,
+  .amb-ash::before,
+  .amb-twinkle::before,
+  .amb-twinkle::after,
+  .amb-grain::before {
+    animation: none !important;
+  }
+}
