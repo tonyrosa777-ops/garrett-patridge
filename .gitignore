@@ -1,0 +1,34 @@
+# Dependencies
+web/node_modules/
+node_modules/
+
+# Next.js build
+web/.next/
+web/out/
+web/build/
+
+# Env (secrets never committed)
+.env
+.env.local
+web/.env
+web/.env*.local
+
+# Vercel
+.vercel/
+
+# Working scratch — hero generation sources (final assets live in web/public, which IS committed)
+.hero-stills/
+
+# End-of-build audit artifacts (gitignored per the multi-breakpoint audit pattern)
+web/audits/
+
+# Higgsfield pilot scratch
+.higgsfield-pilot/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+web/next-env.d.ts
+web/.next/
+web/tsconfig.tsbuildinfo

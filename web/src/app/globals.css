@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Garrett Partridge — design tokens (design-system.md §2, §3, §4)
+   DARK, single-theme. Instrument-grade: gunmetal + machined brass.
+   No light theme. No white backgrounds anywhere.
+   ============================================================ */
+:root {
+  /* Surfaces — near-black machined steel → gunmetal */
+  --primary: #0E1116;          /* page base */
+  --primary-muted: rgba(14, 17, 22, 0.6);
+  --bg-base: #0E1116;
+  --bg-elevated: #161B22;      /* the "light" (raised) band — gunmetal, NEVER white */
+  --bg-card: #1F262E;
+
+  /* Brass accent — machined, not gold */
+  --accent: #B8864B;
+  --accent-hot: #D9A55A;
+
+  /* Text — brushed aluminum */
+  --text-primary: #E6E8EB;
+  --text-secondary: #A6ADB6;
+  --text-muted: #6E7681;
+
+  /* Lines */
+  --border-subtle: #2A323C;
+
+  /* Status (instrument readout) — red ONLY as oxblood status, never a panel */
+  --status-cleared: #5C9E76;
+  --status-warn: #C9923A;
+  --status-blocked: #B0524A;
+
+  /* Spacing scale (4px → 96px) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Type scale (clamp-based, mobile-first) */
+  --text-display: clamp(2.5rem, 6vw, 4.5rem);
+  --text-h2: clamp(1.875rem, 4vw, 3rem);
+  --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --text-body: clamp(1rem, 1.05vw, 1.125rem);
+  --text-eyebrow: 0.8125rem;
+  --text-fine: 0.875rem;
+
+  /* scroll offset for fixed nav */
+  scroll-padding-top: 96px;
+}
+
+/* Map tokens into Tailwind v4 theme so utilities (font-display, text-, bg-) resolve */
+@theme inline {
+  --color-primary: var(--primary);
+  --color-bg-base: var(--bg-base);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-card: var(--bg-card);
+  --color-accent: var(--accent);
+  --color-accent-hot: var(--accent-hot);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+
+  --font-display: var(--font-plex-sans);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+  --font-serif: var(--font-plex-serif);
+}
+
+@media (min-width: 768px) { :root { scroll-padding-top: 112px; } }
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-plex-sans), "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.font-mono, .eyebrow {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+}
+
+.eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+/* ----- Brass / cool H1 shimmer (design-system §2 shimmer token) ----- */
+.hero-shimmer-brass {
+  background: linear-gradient(
+    100deg,
+    var(--text-primary) 30%,
+    var(--accent-hot) 50%,
+    var(--text-primary) 70%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brass-sweep 6s linear infinite;
+}
+@keyframes brass-sweep { to { background-position: -200% center; } }
+
+/* ----- Machined-seam hairline divider ----- */
+.hairline {
+  height: 1px;
+  background: var(--border-subtle);
+  border: 0;
+}
+
+/* ----- Breathing radial orb (ambient section motion, CSS-only) ----- */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* Accessibility: reduce motion → freeze to static gradient, never flat */
+@media (prefers-reduced-motion: reduce) {
+  .hero-shimmer-brass { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+::selection { background: var(--accent); color: var(--primary); }
