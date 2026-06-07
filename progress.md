@@ -4,8 +4,8 @@
 **Client:** Garrett Partridge | Brookline, NH (serving Greater Boston & Southern NH)
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
-**Last Updated:** 2026-06-07
-**Current Phase:** Phase 0 — Initialization (Task 0D / debrief)
+**Last Updated:** 2026-06-07 (Session 2)
+**Current Phase:** Phase 1 — Stage 1D content DONE (site.ts + quiz.ts written + verified); next = Stage 1E page sweep (foundation wave → parallel pages)
 
 ---
 
@@ -13,11 +13,11 @@
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 0 | Project Initialization | 🔄 In Progress |
-| 1 | Research + Design System (Stage 1A scan, 1B design-synthesizer) | ⬜ Not Started |
-| 2 | Scaffold (Stage 1C) | ⬜ Not Started |
-| 3 | Content + Animation / Hero (Stage 1D) | ⬜ Not Started |
-| 4 | All Pages — core + blog + booking (Stage 1E) | ⬜ Not Started |
+| 0 | Project Initialization | ✅ Done |
+| 1 | Research + Design System (Stage 1A scan, 1B design-synthesizer) | ✅ Done |
+| 2 | Scaffold (Stage 1C) | ✅ Done (bdb74f4) |
+| 3 | Content + Animation / Hero (Stage 1D) | ✅ Done (hero + site.ts + quiz.ts) |
+| 4 | All Pages — core + blog + booking (Stage 1E) | 🔄 Foundation wave next |
 | 5 | SEO + AEO + GEO (Stage 1F) | ⬜ Not Started |
 | 6 | Assets — hero + blog images (Stage 1G) | ⬜ Not Started |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
@@ -119,3 +119,46 @@
 **Next Session Starts At:** Confirm design direction + the 2 fatal-premortem decisions with Anthony → Stage 1C scaffold (create-next-app + design tokens + move hero assets in) → Stage 1D wire Hero.tsx + content-writer/animation-specialist sweep.
 **Credits:** Higgsfield Plus, 435 → ~327 (108 spent on hero video; stills free).
 **Blockers:** Design-direction green-light (incl. trust-layer real-or-empty decision + dark-pivot buy-in) before the full page sweep.
+
+---
+
+### Session 1 — continued (Stage 1C SCAFFOLD — committed bdb74f4)
+**Intent:** Anthony approved hero + direction ("build it"). Scaffold the app and verify it runs.
+**Completed:**
+- `create-next-app` → **Next.js 16.2.7 + React 19.2.4 + Tailwind v4** in `web/`. Deps: framer-motion, react-intersection-observer, react-hook-form, zod, react-markdown, remark-gfm (NO @fal-ai/client — retired; NO Sanity — file-based blog chosen for demo reliability + deadline; NO shop deps).
+- **Git restructured to project ROOT** (removed web/.git) so toolkit docs + app + hero assets are ONE repo. Identity set (Anthony Rosa / anthonyrosa14@icloud.com). Root `.gitignore` (node_modules, .next, .env*.local, .hero-stills/, web/audits/).
+- Hero assets moved into `web/public/videos/` (hero-loop.mp4 1.1MB + .webm) + `web/public/images/` (hero-poster.webp + 3 source stills).
+- `web/NEXT16-NOTES.md` written — binding agent brief on Next 16 breaking changes (async `params`/`searchParams`, `PageProps<'/route'>`/`RouteContext<'/route'>` global helpers, route handlers uncached-by-default, async `headers()`/`cookies()`, `"use client"` for framer/hooks, Tailwind v4 @theme). **Every page/route agent MUST read this first.**
+- `globals.css`: full gunmetal+brass token set (§2), spacing + clamp type scale (§3/§4), `.hero-shimmer-brass`, `.eyebrow`, hairline, breathing-orb keyframes, reduced-motion degradation.
+- `layout.tsx`: IBM Plex Sans/Mono/Serif + Inter via next/font, metadataBase + OG from site.ts.
+- `Hero.tsx`: **Architecture B full-bleed movie header wired + LIVE** — video (webm+mp4) + reduced-motion poster `<img>` + dual-axis dark-left gradient + framer stagger (eyebrow → H1 brass-shimmer → subhead → 2 CTAs → microcopy). Reads from siteConfig.
+- `site.ts`: SKELETON (siteConfig: name/url/positioning/hero/nav/CTAs, [DEMO COPY]). content-writer expands.
+- `page.tsx`: renders Hero + a "build in progress" band. **`npm run build` PASSES clean** (TS clean, static gen OK).
+**Files touched:** web/ (full scaffold), web/src/app/{globals.css,layout.tsx,page.tsx}, web/src/components/Hero.tsx, web/src/data/site.ts, web/NEXT16-NOTES.md, web/.env.local (gitignored), .gitignore, web/public/{videos,images}.
+**Decisions Made:**
+- **Blog = file-based, not Sanity**, for this build (deadline + demo reliability + no external project dependency; can migrate to Sanity post-sale if Garrett wants self-editing). Logged as a deviation from the template's Sanity default — defensible per no-web-boilerplate + senior-engineer call.
+- **Next 16 is past training data** → captured gotchas in NEXT16-NOTES.md so agents don't ship Next-14-shaped code.
+- One repo at project root (not web/) so plan + implementation commit together (Plan Preservation Rule).
+**Current State:** Scaffold LIVE + committed + build-verified. Hero wired and renders. No remote yet (no GitHub repo) → couldn't push; add remote at infra/launch and push (memory: always-push, deferred only by missing remote).
+**Next Session Starts At (Stage 1D/1E sweep — delegate per Subagent Delegation Rule, each agent reads NEXT16-NOTES.md):**
+  1. content-writer → expand `site.ts` (services/engagement models, 36-slot testimonials REAL-or-EMPTY per premortem, FAQ, quiz/diagnostic data, niche-landing copy, blog article bodies for the expanded AEO slate led by FOCI/onshoring + gated tool).
+  2. Then Stage 1E pages in parallel waves: Nav+Footer → homepage sections (rhythm map §4) → about/method/engagements/contact/faq/testimonials → 3 niche landings → /diagnostic quiz → custom BookingCalendar (+ /api/calendly/* route handlers, demo-seeded) → /pricing (internal) → expanded /blog (file-based) — each wired to nav + sitemap in-commit.
+  3. Stage 1F SEO/AEO (+ StructuredData Person+Organization sameAs). 1G blog images (Higgsfield Flux 2, ≤4/batch). 1G.5 prospect-journey audit. 1H pre-launch. 1I browser audit. 1J optimus-review.
+**Blockers:** None blocking. Tuesday-ask list unchanged.
+
+---
+
+### Session 2 — 2026-06-07 (Stage 1D content foundation)
+**Intent:** Resume build via /prime; write the content data layer (gating dependency for all Stage 1E pages).
+**Completed:**
+- Spawned `content-writer` (general-purpose) with a project-specific override brief (no shop, engagements-not-services, NO email-gate diagnostic, two-tier capacity ladder, 3 loss-framed niche landings, trust-layer DEMO-COPY-but-real-or-empty-ready, blog metadata-only for the expanded AEO slate).
+- `web/src/data/site.ts` expanded: siteConfig, problem (instrument-readout fault rows), method (Standard Work 2.0 4 pillars), proof (honest-reduction stats), engagements (3, no price), diagnosticTeaser, capacity (full-engagement waitlist + paid 2-hr consult lower rung, no countdown), about (full structured story), faq (13 Q&A, AEO direct-answer), testimonials (36, DEMO COPY, B2B role-cited), featuredTestimonials [1,3,17,34], niches (3, loss-frame openers), gatedTool (CMMC Readiness Self-Scorer), blog (12 posts metadata, 3 flagship = onshoring/AS9100+CMMC/backlog-to-cash), footer, seo (14 routes).
+- `web/src/data/quiz.ts` new: QuizType (4 archetypes), QUIZ_QUESTIONS (6), QUIZ_RESULTS (recognition + answer-restating body), `scoreQuiz` (pure, deterministic). No leadCapture/email gate.
+**Files touched:** `web/src/data/site.ts` (all exports), `web/src/data/quiz.ts` (new), `progress.md`.
+**Decisions Made:**
+- Orchestrator-defined the exact site.ts/quiz.ts export contract in the spawn brief so Stage 1E component agents have a stable interface to read.
+- Blog = metadata-only in site.ts; full article bodies are a later dedicated wave (token-bounded, ≤ a few articles per agent).
+**Discovered / fixed in verification:** content-writer leaked the `[DEMO COPY — pending client review]` marker (em dash) INTO 6 rendered string values (proof.stats notes, about credentials, namedPrimes). Fixed: moved each marker to a trailing/preceding comment, stripping the em dash from rendered copy. Also caught 37 testimonials (one over the mandated 36 → orphan-row bug per Error #31/#63); removed the last one (featured indices [1,3,17,34] unaffected). Re-verified: 0 em dashes in any string literal, exactly 36 testimonials, `tsc --noEmit` clean.
+**Current State:** Content data layer complete + typechecks clean. Hero already wired. Page components not built yet.
+**Next Session Starts At:** Stage 1E foundation wave — shared layout primitives (Section/Container with radial-gradient + ambient-motion backgrounds, animation wrappers, Card, instrument-readout DataTable), SiteHeader nav (with ⬥ Pricing marker + Request-a-Strategic-Conversation CTA), global Footer, and the custom BookingCalendar (+ /api/calendly/* demo-seeded). THEN parallel page agents consuming that contract.
+**Blockers:** None blocking the demo. Tuesday-ask hard-facts flagged in site.ts: real LinkedIn URL, registered entity name, USPTO serial, formal certifications, real case-study numbers/named primes (all [LAUNCH-BLOCKER] or [MISSING] for public launch; demo runs on DEMO COPY).
