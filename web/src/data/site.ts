@@ -844,7 +844,8 @@ export interface GatedTool {
 
 export const gatedTool: GatedTool = {
   name: "CMMC Readiness Self-Scorer",
-  slug: "cmmc-readiness-scorer",
+  // slug doubles as the route path (consumed as `/${gatedTool.slug}`); the tool lives at /tools/cmmc-readiness
+  slug: "tools/cmmc-readiness",
   eyebrow: "Free tool",
   headline: "Score your CMMC Level 2 readiness in ten questions.",
   body: "The same DFARS-flowdown logic that converts a stuck founder into a buyer, built into a scorer you can run in five minutes and forward to your CFO. It maps your answers against the NIST SP 800-171 control families and returns a readiness band with the gaps named in plain language. No sales call attached.",
@@ -1091,7 +1092,7 @@ export const footer: FooterData = {
       heading: "Authority",
       links: [
         { label: "Insights", href: "/blog" },
-        { label: "CMMC readiness scorer", href: "/cmmc-readiness-scorer" },
+        { label: "CMMC readiness scorer", href: "/tools/cmmc-readiness" },
         { label: "About", href: "/about" },
         { label: "FAQ", href: "/faq" },
       ],
