@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/data/site";
 import SiteHeader from "@/components/layout/SiteHeader";
 import Footer from "@/components/layout/Footer";
+import StructuredData from "@/components/StructuredData";
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-plex-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({
       className={`${plexSans.variable} ${plexMono.variable} ${plexSerif.variable} ${inter.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
+        <StructuredData />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <Footer />

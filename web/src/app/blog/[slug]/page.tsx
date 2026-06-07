@@ -6,7 +6,7 @@ import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CtaLink from "@/components/ui/Button";
 import FadeUp from "@/components/animations/FadeUp";
-import { blog, gatedTool } from "@/data/site";
+import { blog, gatedTool, siteConfig } from "@/data/site";
 
 // /blog/[slug] (post template). Next 16 — params is a Promise, MUST await.
 // METADATA-ONLY STAGE: the AEO directAnswer leads as citation bait, then the excerpt,
@@ -64,8 +64,47 @@ export default async function BlogPostPage({
     day: "numeric",
   });
 
+  const postUrl = `${siteConfig.url}/blog/${post.slug}`;
+
+  // Article + BreadcrumbList JSON-LD. author/publisher reference the site-wide
+  // entity-graph @ids (Pattern #100) so the post is attributed to Garrett (Person)
+  // and published by the practice (ProfessionalService). No fabricated fields.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.date,
+        articleSection: post.category,
+        inLanguage: "en-US",
+        author: {
+          "@type": "Person",
+          "@id": `${siteConfig.url}/#garrett`,
+          name: "Garrett Partridge",
+        },
+        publisher: { "@id": `${siteConfig.url}/#business` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+        url: postUrl,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+          { "@type": "ListItem", position: 2, name: "Insights", item: `${siteConfig.url}/blog` },
+          { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHeader
         tone="dark"
         motion="orbs"

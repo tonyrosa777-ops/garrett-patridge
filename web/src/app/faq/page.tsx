@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/layout/PageHeader";
-import { seo } from "@/data/site";
+import { seo, faq } from "@/data/site";
 import FaqClient from "./FaqClient";
 
 // ----------------------------------------------------------------------------
@@ -22,9 +22,25 @@ export const metadata: Metadata = {
   openGraph: { title: meta.title, description: meta.description, type: "website" },
 };
 
+// FAQPage JSON-LD built from the faq data (each Question → acceptedAnswer Answer).
+// Lives in the SERVER page, not the client accordion. Valid JSON via JSON.stringify.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function FaqPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* 1 — Header (dark) */}
       <PageHeader
         tone="dark"
