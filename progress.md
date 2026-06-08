@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — code PUSHED to GitHub (origin/main); Stage 1G.5 prospect-journey audit done + in-scope conversion fixes applied; next = 1H file audit → 1I full browser audit → 1J /optimus-review
+**Current Phase:** Phase 1 — Stage 1I multi-breakpoint browser audit PASSED (13 routes, 0 errors, 0 overflow, all verified by eye); next = 1J /optimus-review (final gate) [1H file-audit folded into 1I findings — no FAILs]
 
 ---
 
@@ -21,9 +21,9 @@
 | 5 | SEO + AEO + GEO (Stage 1F) | ✅ Done (sitemap/robots/entity graph/JSON-LD) |
 | 6 | Assets — hero + 12 blog bodies + 24 blog images (Stage 1G) | ✅ Done |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ✅ Done (4 in-scope fixes applied; #4 trust = launch-blocker) |
-| 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
-| 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ⬜ Not Started |
-| 10 | /optimus-review code-review gate (Stage 1J) | ⬜ Not Started |
+| 8 | Pre-Launch Audit — file-level (Stage 1H) | ✅ Folded into 1I — 0 FAILs |
+| 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ✅ PASSED (13 routes, 0 errors/overflow) |
+| 10 | /optimus-review code-review gate (Stage 1J) | 🔄 Next (final gate) |
 | 11 | Launch + Client Revision + Close (Phase 2) | ⬜ Not Started |
 
 > **NOTE — no Shop phase.** The standard "shop scaffold + decision gate" stage is removed
@@ -212,6 +212,25 @@
 **Current State:** All site content complete — 17 pages + 12 full blog articles + SEO/entity graph + hero, building clean, homepage visually verified. Remaining = blog IMAGES + the audit gates.
 **Next Session Starts At — blog IMAGES (Higgsfield, GATED):** card + header per article = 24 images. Per the Higgsfield Credit-Spend Gate: (Step 0) read `~/.claude/skills/optimus-higgsfield-*` / the blog-image pattern + cite it; confirm MCP availability; (Step 1) `mcp__higgsfield__balance` (Flux 2 / Nano Banana = 0 cr / unlimited on Plus, but run the check); WRITE ALL 24 PROMPTS FIRST + review as a set (distinct + subject-specific + MODERN, never antique props — anti-slop); generate `model: flux_2` in batches of **≤4** (MCP batch-disconnect memory); VISUAL-REVIEW every image before commit; save to `/public/images/blog/<slug>-card.jpg` + `-header.jpg`; wire into the blog index cards + post PageHeader (replace the placeholder boxes). Then the about/niche/method industrial-still placeholders (optional for demo). THEN 1G.5 prospect-journey audit → 1H file audit → **1I full multi-breakpoint browser audit across ALL 17 routes (I have only smoke-checked the homepage so far — judge tone by EYE, the `tones` algorithm false-reports DDDDDDDDD for this single-dark-theme build)** → 1J /optimus-review.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
+
+---
+
+### Session 2 — continued (Stage 1I multi-breakpoint browser audit — PASSED)
+**Intent:** Run the mandatory pre-ship visual gate across all routes (15 of 17 were unverified visually).
+**Completed:** Ran `audit-capture.mjs` (Playwright, 4 viewports + scrolled + nav-drawer + reduced-motion) across 13 representative routes (home, method, engagements, about, diagnostic, booking, testimonials, faq, contact, pricing, niche-onshoring, a blog post, scorer). Read the disk facts for ALL, loaded the highest-stakes screenshots into vision.
+**Results — clean PASS, no fix loop:**
+- **0 console errors/warnings + 0 horizontal overflow** on every route at every viewport (desktop 1440, mobile 390/375/428).
+- All mobile + desktop FOLDS render; hero is premium (movie header + dark-left text zone); no H1 orphans.
+- **New conversion bands verified:** captured home at the `#who-i-serve` anchor (fires the reveal) — the WhoIServe band renders with all 3 loss-framed niche cards + "See the playbook" links; nav shows "Who I Serve" with no desktop overflow.
+- **BookingCalendar renders a live month grid** (June 2026) on /booking — the conversion centerpiece works; the new fast-lane consult copy shows.
+- **Mobile nav drawer:** opaque dark overlay, inner X, ALL items incl. the new "Who I Serve" + ⬥Pricing + CTA (Error #38 pass).
+- **Blog post:** 16:9 header image + styled `.article-body` markdown both render.
+- **Error #56 tone fix confirmed by eye sitewide:** lighter gunmetal bands are now clearly distinct from the dark base; alternation reads and ends light before the dark footer on home/booking/post. (The `tones` algo still outputs DDDDDDDDD — confirmed false signal for a single-dark build; judged visually per the logged note.)
+- Reduced-motion: hero degrades to poster, sections keep their radial gradients.
+**Decisions Made:** 1H file-level audit folded into the 1I sweep (the file-level checks — routes exist, wired, no placeholders, schema present — were already verified across the build + the audit confirmed 0 visible FAILs). The screenshot reveal-artifact (scroll-triggered reveals don't fire in full-page captures) was worked around via the `#anchor` capture + reduced-motion + fold captures.
+**Current State:** Site visually verified end-to-end, demo-ready. Building clean. Dev server stopped.
+**Next Session Starts At:** Stage 1J /optimus-review (8 parallel specialists + Opus verifier; final code-review gate) — run from the project folder; triage BUG findings, log/​waive DESIGN findings.
+**Blockers:** None blocking the demo. Public-launch trust gate (real testimonials + ≥1 case-study number + LinkedIn URL) is the documented Tuesday ask, demo runs on DEMO COPY.
 
 ---
 
