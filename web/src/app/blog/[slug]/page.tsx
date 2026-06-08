@@ -1,12 +1,29 @@
+import { readFileSync } from "fs";
+import path from "path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import PageHeader from "@/components/layout/PageHeader";
 import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CtaLink from "@/components/ui/Button";
 import FadeUp from "@/components/animations/FadeUp";
 import { blog, gatedTool, siteConfig } from "@/data/site";
+
+// Load the article body Markdown from src/content/blog/<slug>.md at build time (SSG).
+// Returns "" if the briefing has not been written yet (falls back to the editorial note).
+function loadArticleBody(slug: string): string {
+  try {
+    return readFileSync(
+      path.join(process.cwd(), "src", "content", "blog", `${slug}.md`),
+      "utf8",
+    ).trim();
+  } catch {
+    return "";
+  }
+}
 
 // /blog/[slug] (post template). Next 16 — params is a Promise, MUST await.
 // METADATA-ONLY STAGE: the AEO directAnswer leads as citation bait, then the excerpt,
@@ -65,6 +82,7 @@ export default async function BlogPostPage({
   });
 
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
+  const body = loadArticleBody(post.slug);
 
   // Article + BreadcrumbList JSON-LD. author/publisher reference the site-wide
   // entity-graph @ids (Pattern #100) so the post is attributed to Garrett (Person)
@@ -126,55 +144,54 @@ export default async function BlogPostPage({
           LIGHT before the dark footer (footer-anchored parity). */}
       <Section tone="light" motion="none">
         <div className="mx-auto max-w-[68ch]">
-          {/* Lede — the direct answer expanded, set in serif for long-form register. */}
-          <Eyebrow>The direct answer</Eyebrow>
-          <p
-            className="mt-5"
-            style={{
-              fontFamily: "var(--font-serif)",
-              color: "var(--text-primary)",
-              fontSize: "var(--text-h3)",
-              lineHeight: 1.5,
-            }}
-          >
-            {post.directAnswer}
-          </p>
+          {body ? (
+            <>
+              {/* Full article body — Markdown from src/content/blog/<slug>.md, styled via .article-body. */}
+              <article className="article-body">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
+              </article>
 
-          {/* Excerpt — the framing line, serif body. */}
-          <p
-            className="mt-8"
-            style={{
-              fontFamily: "var(--font-serif)",
-              color: "var(--text-secondary)",
-              fontSize: "var(--text-body)",
-              lineHeight: 1.7,
-            }}
-          >
-            {post.excerpt}
-          </p>
-
-          {/* Editorial note — clearly marked, quiet brand voice. NOT a fake body. */}
-          <div
-            className="mt-10 rounded-md border p-6 md:p-8"
-            style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
-          >
-            <Eyebrow>Briefing in preparation</Eyebrow>
-            <p
-              className="mt-4"
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)", lineHeight: 1.65 }}
+              {/* Closing booking CTA after the article. */}
+              <div
+                className="mt-12 rounded-md border p-6 md:p-8"
+                style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+              >
+                <Eyebrow>Put this in front of an operator</Eyebrow>
+                <p
+                  className="mt-4"
+                  style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)", lineHeight: 1.65 }}
+                >
+                  If this is the question on your floor right now, a strategic conversation is
+                  the fastest way to pressure-test it against your actual operation.
+                </p>
+                <div className="mt-6">
+                  <CtaLink href="/booking" variant="primary">
+                    Request a Strategic Conversation
+                  </CtaLink>
+                </div>
+              </div>
+            </>
+          ) : (
+            // Fallback — only if a briefing has not been written yet. NOT a fake body.
+            <div
+              className="rounded-md border p-6 md:p-8"
+              style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
             >
-              The full briefing on this question is being written to the same standard as the
-              engagements: source-cited, specific to a New England defense manufacturer, and
-              built to be the reference your prime trusts. The direct answer above carries the
-              core of it today. To put this question in front of an operator now, request a
-              strategic conversation.
-            </p>
-            <div className="mt-6">
-              <CtaLink href="/booking" variant="primary">
-                Request a Strategic Conversation
-              </CtaLink>
+              <Eyebrow>Briefing in preparation</Eyebrow>
+              <p
+                className="mt-4"
+                style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)", lineHeight: 1.65 }}
+              >
+                {post.excerpt} The direct answer above carries the core of it today. To put this
+                question in front of an operator now, request a strategic conversation.
+              </p>
+              <div className="mt-6">
+                <CtaLink href="/booking" variant="primary">
+                  Request a Strategic Conversation
+                </CtaLink>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Gated tool nudge. */}
           <div
