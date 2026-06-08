@@ -168,30 +168,32 @@ h1, h2, h3, h4 {
 .sec-overlay-dark {
   background:
     /* cool top sheen (lit from above, gunmetal not white) */
-    radial-gradient(75% 55% at 50% -12%, rgba(199, 205, 213, 0.06) 0%, transparent 60%),
-    /* brass warmth pool, top-left, now reads */
-    radial-gradient(70% 60% at 10% -5%, rgba(184, 134, 75, 0.16) 0%, transparent 55%),
+    radial-gradient(80% 60% at 50% -12%, rgba(202, 209, 218, 0.10) 0%, transparent 62%),
+    /* brass warmth pool, top-left */
+    radial-gradient(72% 62% at 8% -6%, rgba(184, 134, 75, 0.24) 0%, transparent 58%),
     /* deeper brass pool, bottom-right */
-    radial-gradient(85% 75% at 102% 108%, rgba(184, 134, 75, 0.11) 0%, transparent 55%);
+    radial-gradient(88% 78% at 104% 108%, rgba(184, 134, 75, 0.17) 0%, transparent 58%),
+    /* subtle bottom vignette for depth */
+    radial-gradient(130% 120% at 50% 128%, rgba(0, 0, 0, 0.30) 0%, transparent 55%);
 }
 .sec-overlay-light {
   background:
     /* cool top sheen — lights the top of the gunmetal band (NOT white) */
-    radial-gradient(82% 58% at 50% -16%, rgba(206, 213, 222, 0.13) 0%, transparent 60%),
+    radial-gradient(88% 62% at 50% -16%, rgba(208, 215, 224, 0.19) 0%, transparent 62%),
     /* brass warmth pool, upper-right */
-    radial-gradient(70% 60% at 84% 4%, rgba(184, 134, 75, 0.14) 0%, transparent 55%),
+    radial-gradient(74% 64% at 85% 2%, rgba(184, 134, 75, 0.21) 0%, transparent 58%),
     /* brass pool, lower-left */
-    radial-gradient(80% 70% at 2% 102%, rgba(184, 134, 75, 0.08) 0%, transparent 55%),
+    radial-gradient(82% 72% at 0% 104%, rgba(184, 134, 75, 0.13) 0%, transparent 58%),
     /* depth vignette — darken toward the bottom so the band reads dimensional, not flat */
-    radial-gradient(125% 120% at 50% 125%, rgba(10, 13, 18, 0.42) 0%, transparent 55%);
+    radial-gradient(128% 122% at 50% 126%, rgba(8, 11, 16, 0.55) 0%, transparent 56%);
 }
 
-/* Card surface — a dimensional radial fill (lit top + faint brass corner) instead of a
+/* Card surface — a dimensional radial fill (lit top + brass corner) instead of a
    flat --bg-card panel. Consumed by <Card> and any panel that wants depth. No white. */
 .card-surface {
   background:
-    radial-gradient(120% 85% at 50% -15%, rgba(206, 213, 222, 0.09) 0%, transparent 55%),
-    radial-gradient(115% 100% at 106% 112%, rgba(184, 134, 75, 0.07) 0%, transparent 60%),
+    radial-gradient(125% 88% at 50% -15%, rgba(208, 215, 224, 0.13) 0%, transparent 58%),
+    radial-gradient(120% 105% at 107% 112%, rgba(184, 134, 75, 0.12) 0%, transparent 62%),
     var(--bg-card);
 }
 
