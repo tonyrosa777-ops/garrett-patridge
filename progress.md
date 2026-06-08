@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1F SEO DONE + homepage smoke-audit + Error-#56 surface-ramp fix applied; next = blog article BODIES + blog images (Higgsfield) → then audit gates 1G.5/1H/1I/1J
+**Current Phase:** Phase 1 — Stage 1G blog BODIES done (12 articles written + wired); next = blog IMAGES (Higgsfield, gated) → audit gates 1G.5/1H/1I/1J
 
 ---
 
@@ -19,7 +19,7 @@
 | 3 | Content + Animation / Hero (Stage 1D) | ✅ Done (hero + site.ts + quiz.ts) |
 | 4 | All Pages — core + blog + booking (Stage 1E) | ✅ Done (35 routes build clean) |
 | 5 | SEO + AEO + GEO (Stage 1F) | ✅ Done (sitemap/robots/entity graph/JSON-LD) |
-| 6 | Assets — hero + blog images (Stage 1G) | ⬜ Not Started |
+| 6 | Assets — hero done; blog BODIES done; blog IMAGES next (Stage 1G) | 🔄 Images pending |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
 | 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ⬜ Not Started |
@@ -198,3 +198,17 @@
 **Current State:** SEO + entity graph live; homepage visually verified premium + now has readable section rhythm. Dev server was running for the audit (kill before next heavy step). Build clean.
 **Next Session Starts At:** Blog article BODIES (architecture: per-slug body files + render via react-markdown in /blog/[slug]; start with the 3 flagships — onshoring/AS9100+CMMC/backlog-to-cash — then the rest) + blog card/header IMAGES (Higgsfield Flux 2, cost-gate Step 0 + ≤4/batch per the MCP-disconnect memory). THEN 1G.5 prospect-journey audit → 1H pre-launch-auditor (file-level) → 1I full multi-breakpoint browser audit (all routes, by EYE for tone) → 1J /optimus-review.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL is the entity-graph launch-blocker).
+
+---
+
+### Session 2 — continued (Stage 1G blog article bodies — all 12 written + wired)
+**Intent:** Replace the metadata-only blog stub with real, cited article bodies (the blog is the build's primary AEO engine).
+**Completed (a06e4cd):**
+- **Architecture:** article bodies as pure Markdown in `src/content/blog/<slug>.md`, loaded via `fs.readFileSync` at build (SSG) in `/blog/[slug]/page.tsx`, rendered with `react-markdown` + `remark-gfm` (works in RSC), styled by a new `.article-body` block in globals.css. Graceful fallback retained if a body is ever absent.
+- **12 articles written** (4 parallel agents × 3, flagships grouped): each ~1.1-1.5k words, AEO-structured (every H2 = a buyer query, first sentence = the direct answer), cited to REAL primary sources (DFARS 252.204-7012/-7019/-7020/-7021, NIST SP 800-171 = 110 controls, CMMC Phase 2 Nov 10 2026 per DoD 32 CFR, False Claims Act 31 USC 3729-3733, ITAR 22 CFR 120-130, AS9100, lean/TPS), ZERO invented stats (only well-established regulatory facts or figures already in market-intelligence.md), ZERO em dashes, affirmative first-person. 3 flagships = onshoring/AS9100+CMMC/backlog-to-cash (the citation bet).
+- **Verified:** `next build` clean (37 routes); prerendered HTML of a sample post confirmed real article H2s render (not the fallback); 0 em dashes across all 12 .md files.
+**Files touched:** `web/src/content/blog/*.md` (12 new), `web/src/app/blog/[slug]/page.tsx` (fs loader + react-markdown), `web/src/app/globals.css` (.article-body styles).
+**Decisions Made:** `.md` files (not TS string exports) to avoid markdown-in-TS escaping; bodies start AFTER the directAnswer (which the PageHeader already shows) to avoid duplication; the SEO Article JSON-LD added in 1F was preserved.
+**Current State:** All site content complete — 17 pages + 12 full blog articles + SEO/entity graph + hero, building clean, homepage visually verified. Remaining = blog IMAGES + the audit gates.
+**Next Session Starts At — blog IMAGES (Higgsfield, GATED):** card + header per article = 24 images. Per the Higgsfield Credit-Spend Gate: (Step 0) read `~/.claude/skills/optimus-higgsfield-*` / the blog-image pattern + cite it; confirm MCP availability; (Step 1) `mcp__higgsfield__balance` (Flux 2 / Nano Banana = 0 cr / unlimited on Plus, but run the check); WRITE ALL 24 PROMPTS FIRST + review as a set (distinct + subject-specific + MODERN, never antique props — anti-slop); generate `model: flux_2` in batches of **≤4** (MCP batch-disconnect memory); VISUAL-REVIEW every image before commit; save to `/public/images/blog/<slug>-card.jpg` + `-header.jpg`; wire into the blog index cards + post PageHeader (replace the placeholder boxes). Then the about/niche/method industrial-still placeholders (optional for demo). THEN 1G.5 prospect-journey audit → 1H file audit → **1I full multi-breakpoint browser audit across ALL 17 routes (I have only smoke-checked the homepage so far — judge tone by EYE, the `tones` algorithm false-reports DDDDDDDDD for this single-dark-theme build)** → 1J /optimus-review.
+**Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
