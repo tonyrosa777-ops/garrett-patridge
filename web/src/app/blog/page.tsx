@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHeader from "@/components/layout/PageHeader";
 import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -42,21 +43,38 @@ function PostMeta({ date, readingTime }: { date: string; readingTime: string }) 
   );
 }
 
-// Placeholder image box — hairline framed aspect ratio, no missing image-file references.
-function PlaceholderImage({ ratio }: { ratio: string }) {
+// Card image — the generated Higgsfield 3:2 still inside the same hairline-framed box.
+// object-cover so the machined-instrument crop reads at any column width; the
+// brass-tinted radial overlay stays as a quiet seam over the image.
+function CardImage({
+  slug,
+  alt,
+  ratio,
+}: {
+  slug: string;
+  alt: string;
+  ratio: string;
+}) {
   return (
     <div
       className={`relative ${ratio} w-full overflow-hidden rounded border`}
       style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
-      aria-hidden="true"
     >
-      {/* Quiet diagonal hairline so the empty frame reads as intentional, not broken. */}
+      <Image
+        src={`/images/blog/${slug}-card.png`}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover"
+      />
+      {/* Quiet brass hairline glow over the image so the frame reads as intentional. */}
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
         style={{
           background:
             "radial-gradient(120% 120% at 80% 0%, rgba(176,141,87,0.10) 0%, transparent 55%)",
         }}
+        aria-hidden="true"
       />
     </div>
   );
@@ -88,7 +106,7 @@ export default function BlogIndexPage() {
             style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
           >
             <div className="lg:col-span-6">
-              <PlaceholderImage ratio="aspect-[3/2]" />
+              <CardImage slug={featured.slug} alt={featured.title} ratio="aspect-[3/2]" />
             </div>
             <div className="flex flex-col justify-center lg:col-span-6">
               <p
@@ -129,7 +147,7 @@ export default function BlogIndexPage() {
               <StaggerItem key={post.slug} className="h-full">
                 <Link href={`/blog/${post.slug}`} className="block h-full">
                   <Card className="flex h-full flex-col">
-                    <PlaceholderImage ratio="aspect-[3/2]" />
+                    <CardImage slug={post.slug} alt={post.title} ratio="aspect-[3/2]" />
                     <p
                       className="mt-5 font-mono"
                       style={{ color: "var(--accent)", fontSize: "var(--text-eyebrow)" }}

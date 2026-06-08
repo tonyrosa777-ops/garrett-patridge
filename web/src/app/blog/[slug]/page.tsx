@@ -3,6 +3,7 @@ import path from "path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import PageHeader from "@/components/layout/PageHeader";
@@ -143,6 +144,29 @@ export default async function BlogPostPage({
           Related + tool nudge + CTA all merged into this one light band so the page ends
           LIGHT before the dark footer (footer-anchored parity). */}
       <Section tone="light" motion="none">
+        {/* Header image — full-width 16:9 editorial band above the article body. */}
+        <div
+          className="relative mb-12 aspect-video w-full overflow-hidden rounded-md border"
+          style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+        >
+          <Image
+            src={`/images/blog/${post.slug}-header.png`}
+            alt={post.title}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1200px"
+            className="object-cover"
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(120% 120% at 80% 0%, rgba(176,141,87,0.10) 0%, transparent 55%)",
+            }}
+            aria-hidden="true"
+          />
+        </div>
+
         <div className="mx-auto max-w-[68ch]">
           {body ? (
             <>
