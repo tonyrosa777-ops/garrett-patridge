@@ -13,8 +13,8 @@ interface CardProps {
 export default function Card({ children, className = "" }: CardProps) {
   return (
     <div
-      className={`card-hover rounded-md border p-6 md:p-8 ${className}`}
-      style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+      className={`card-surface card-hover rounded-md border p-6 md:p-8 ${className}`}
+      style={{ borderColor: "var(--border-subtle)" }}
     >
       {children}
     </div>
