@@ -10,8 +10,8 @@
   --primary: #0E1116;          /* page base */
   --primary-muted: rgba(14, 17, 22, 0.6);
   --bg-base: #0E1116;
-  --bg-elevated: #161B22;      /* the "light" (raised) band — gunmetal, NEVER white */
-  --bg-card: #1F262E;
+  --bg-elevated: #222C38;      /* the "light" (raised) band — gunmetal slate, ~1.38:1 vs base so alternation READS at viewport scale (Error #56); still deep-dark, NEVER white */
+  --bg-card: #2A3543;          /* card surface — stays above elevated so cards read raised on both bands */
 
   /* Brass accent — machined, not gold */
   --accent: #B8864B;
@@ -23,7 +23,7 @@
   --text-muted: #6E7681;
 
   /* Lines */
-  --border-subtle: #2A323C;
+  --border-subtle: #37414E;    /* hairline — raised with the surface ramp so seams stay visible on the lighter elevated/card tones (Error #56 retune) */
 
   /* Status (instrument readout) — red ONLY as oxblood status, never a panel */
   --status-cleared: #5C9E76;

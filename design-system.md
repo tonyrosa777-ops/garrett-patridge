@@ -28,8 +28,8 @@ Garrett Partridge is the operations architect a New England defense-industrial-b
 | `--primary-muted` | `rgba(14,17,22,0.6)` | Overlay/scrim base over media for text contrast. | derived from `--primary` |
 | `--accent` | `#B8864B` | **Primary brand accent — restrained machined brass.** CTAs (border + text), section-divider hairlines, highlighted data-table values, particle color, shimmer sweep. Never a flood fill of a whole section. | market-intel §5 `--accent-brass` |
 | `--bg-base` | `#0E1116` | Aliased to page base (dark theme). Dark sections. | market-intel §5 |
-| `--bg-elevated` | `#161B22` | **The "light" (raised) section tint — gunmetal, cool-slate.** Used for alternating bands. Clearly lighter than `--primary`, never white. | market-intel §5 `--surface-raised` |
-| `--bg-card` | `#1F262E` | Cards, panels, hover/active surfaces. | market-intel §5 `--surface-overlay` |
+| `--bg-elevated` | `#222C38` | **The "light" (raised) section tint — gunmetal cool-slate.** Used for alternating bands. **Retuned 2026-06-07 from `#161B22` → `#222C38` (Error #56):** the original sat only ~8 RGB / ~1.08:1 above the base, perceptually invisible at viewport scale, so the homepage section rhythm read as one flat dark field (confirmed by the Stage-1I-style smoke capture, `tones=DDDDDDDDD`). `#222C38` gives a ~1.38:1 boundary step — a *readable* surface change that stays unmistakably deep-dark and machined (still NEVER white/near-white). The whole raised ramp moved up coherently to preserve base < elevated < card < hairline. | market-intel §5 `--surface-raised`; Error #56 |
+| `--bg-card` | `#2A3543` | Cards, panels, hover/active surfaces. Retuned with the ramp (was `#1F262E`) so cards read raised on BOTH the dark and the lighter elevated bands. | market-intel §5 `--surface-overlay`; Error #56 |
 | `--text-primary` | `#E6E8EB` | Body + headings — brushed aluminum. All hero text. WCAG: 13.9:1 on `--primary` (AAA). | market-intel §5 `--text-primary` |
 | `--text-secondary` | `#A6ADB6` | Captions, metadata, sub-labels. 6.6:1 on `--primary` (AA). | market-intel §5 `--text-secondary` |
 | `--text-muted` | `#6E7681` | Fine print, disabled, footnotes. 3.4:1 — large/non-essential text only. | market-intel §5 `--text-muted` |
@@ -38,7 +38,7 @@ Garrett Partridge is the operations architect a New England defense-industrial-b
 
 | Token | Hex | Usage rule | Source |
 |---|---|---|---|
-| `--border-subtle` | `#2A323C` | 1px hairline rules — the "machined seam" dividers that engage on scroll. | market-intel §5 |
+| `--border-subtle` | `#37414E` | 1px hairline rules — the "machined seam" dividers that engage on scroll. Retuned with the ramp (was `#2A323C`) so seams stay visible on the lifted elevated/card surfaces (Error #56). | market-intel §5; Error #56 |
 | `--accent-brass-hot` | `#D9A55A` | Brass hover state + micro-glow on CTA fill. No drop shadow, no neon. | market-intel §5 |
 | `--status-cleared` | `#5C9E76` | Muted green — compliance "cleared" indicator only. Never decorative. | market-intel §5 |
 | `--status-warn` | `#C9923A` | "POA&M / action needed" status only. | market-intel §5 |
