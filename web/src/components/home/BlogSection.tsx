@@ -75,28 +75,31 @@ export default function BlogSection() {
           </Link>
         </FadeUp>
 
-        {/* Two secondary */}
+        {/* Two secondary — large full-height image left, vertically-centered content
+            right, so the card fills its space (no empty void). Stacks on mobile. */}
         <div className="flex flex-col gap-8 lg:gap-10">
           {secondary.map((post, i) => (
             <FadeUp key={post.slug} delay={(i + 1) * 0.08} className="h-full">
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex h-full gap-5 rounded-md border p-6 transition-colors"
+                className="group grid h-full grid-cols-1 overflow-hidden rounded-md border transition-colors sm:grid-cols-[5fr_7fr]"
                 style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
               >
+                {/* Image: full-width top on mobile, full-height left column on sm+ */}
                 <div
-                  className="relative hidden h-24 w-32 shrink-0 overflow-hidden rounded border sm:block"
-                  style={{ background: "var(--bg-elevated)", borderColor: "var(--border-subtle)" }}
+                  className="relative aspect-[16/10] w-full sm:aspect-auto sm:h-full sm:min-h-[230px]"
+                  style={{ background: "var(--bg-elevated)" }}
                 >
                   <Image
                     src={`/images/blog/${post.slug}-card.png`}
                     alt={post.title}
                     fill
-                    sizes="128px"
-                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 320px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="min-w-0">
+                {/* Content: vertically centered → no empty gap at any card height */}
+                <div className="flex min-w-0 flex-col justify-center gap-3 p-6 md:p-7">
                   <p
                     className="font-mono text-[11px] uppercase tracking-[0.16em]"
                     style={{ color: "var(--accent)" }}
@@ -104,19 +107,19 @@ export default function BlogSection() {
                     {post.category}
                   </p>
                   <h3
-                    className="mt-2 font-display font-semibold leading-snug"
-                    style={{ fontSize: "1.125rem", color: "var(--text-primary)" }}
+                    className="font-display font-semibold leading-snug"
+                    style={{ fontSize: "1.3rem", color: "var(--text-primary)" }}
                   >
                     {post.title}
                   </h3>
                   <p
-                    className="mt-2 text-[14px] leading-relaxed"
+                    className="text-[15px] leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {post.excerpt}
                   </p>
                   <p
-                    className="font-mono mt-3 text-[13px]"
+                    className="font-mono mt-1 text-[13px]"
                     style={{ color: "var(--text-primary)" }}
                   >
                     Read <span aria-hidden="true">→</span>
