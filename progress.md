@@ -215,6 +215,22 @@
 
 ---
 
+### Session 3 — 2026-06-08 (deploy + post-deploy UI revisions, live on Vercel)
+**Intent:** Get the site deployed so Anthony can view it, then fix legibility/UX issues he flagged on the live site.
+**Completed:**
+- **Deployed to Vercel — LIVE at https://garrett-patridge.vercel.app** (all routes 200). Root cause of the initial 404: the project was imported from the repo root, so Root Directory was `.` + Framework null → no-build static dump. Fix: Anthony set Root Directory = `web` + Framework = Next.js in the dashboard (I couldn't patch it — CLI has no command, the stored API token was expired); then `vercel deploy --prod` ran a real `next build`. Committed `web/vercel.json` ({framework:nextjs}) to pin it. **Future `git push` to main now auto-deploys correctly.**
+- **Readability fixes (Anthony: "only the headings are legible, everything else is hard to read"):**
+  - StatusRow (instrument tables on /method + homepage Problem): moved detail off small mono → body font, 14px/1.65.
+  - **Site-wide token brighten (the systemic fix):** `--text-secondary` #A6ADB6→#C7CDD5, `--text-muted` #6E7681→#9AA2AD (old were dim/below-AA on dark+card; new clear AA even on the lightest card). design-system §2 updated.
+  - Bumped 13px→14/15px body text in engagement cards, stats notes, scorer + diagnostic body.
+- **Homepage blog teaser:** wired the real card images into the featured + secondary cards (were empty placeholder boxes); then **redesigned the two secondary cards** (Anthony: "bunch of empty space, looks horrible") → large full-height image left + vertically-centered bigger text right (title 1.3rem, excerpt 15px), fills the card. Featured card left unchanged (he liked it).
+**Files touched:** `web/vercel.json` (new), `web/src/app/globals.css` + `design-system.md` (text tokens + earlier surface ramp), `web/src/components/ui/StatusRow.tsx`, `web/src/components/home/{BlogSection,EngagementsSection,StatsSection,ScorerSection}.tsx`, `web/src/app/diagnostic/DiagnosticClient.tsx`, `web/src/app/tools/cmmc-readiness/ScorerClient.tsx`.
+**Verified:** each change `next build` clean + visually confirmed on the live production URL via audit-capture screenshots.
+**Current State:** Site LIVE + legibility + blog teaser fixed, all pushed (auto-deploys). 
+**Next (when Anthony is ready):** custom domain garrettpartridge.com; real env vars (Calendly/Resend) for live booking + contact; public-launch trust gate (real testimonials + case-study number + LinkedIn); delete /pricing pre-launch; /retro. Watch for any other small/dim text spots Anthony flags on click-through.
+
+---
+
 ### Session 2 — continued (Stage 1J /optimus-review — CLEARED; PHASE 1 COMPLETE)
 **Intent:** Run the final multi-agent code-review gate; resolve findings.
 **Completed:** Ran `/optimus-review --paths web/src` (8 parallel Sonnet specialists + Opus verifier) against an empty-tree first-run diff of web/src (code+copy, blog .md excluded as already-verified). Raw 15 findings → verifier classified **4 BUG / 9 DESIGN / 2 suppressed**. All authorized overrides (no shop, /pricing demo tool, single-dark theme, DEMO COPY trust layer, all-dark tones signal) correctly left unflagged.
