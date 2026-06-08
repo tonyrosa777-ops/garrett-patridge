@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1E ALL PAGES DONE (35 routes, `next build` clean); next = Stage 1F SEO/AEO (sitemap, robots, StructuredData, JSON-LD)
+**Current Phase:** Phase 1 — Stage 1F SEO DONE + homepage smoke-audit + Error-#56 surface-ramp fix applied; next = blog article BODIES + blog images (Higgsfield) → then audit gates 1G.5/1H/1I/1J
 
 ---
 
@@ -18,7 +18,7 @@
 | 2 | Scaffold (Stage 1C) | ✅ Done (bdb74f4) |
 | 3 | Content + Animation / Hero (Stage 1D) | ✅ Done (hero + site.ts + quiz.ts) |
 | 4 | All Pages — core + blog + booking (Stage 1E) | ✅ Done (35 routes build clean) |
-| 5 | SEO + AEO + GEO (Stage 1F) | 🔄 Next |
+| 5 | SEO + AEO + GEO (Stage 1F) | ✅ Done (sitemap/robots/entity graph/JSON-LD) |
 | 6 | Assets — hero + blog images (Stage 1G) | ⬜ Not Started |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
@@ -183,3 +183,18 @@
 **Current State:** ALL Stage 1E pages built. `npm run build` clean: 35 routes (static + SSG + 2 dynamic API). Hero movie header live. No remote yet (no GitHub repo) → still unpushed (Always-Push deferred only by missing remote; add remote at infra/launch).
 **Next Session Starts At:** Stage 1F SEO/AEO — `sitemap.ts` (ALL routes, /pricing noindex), `robots.ts`, `StructuredData.tsx` (Person + ProfessionalService + Service JSON-LD with sameAs — Pattern #100, the personal-brand entity graph), Article + FAQPage JSON-LD, opengraph-image. THEN 1G blog card+header images (Higgsfield Flux 2, ≤4/batch) + blog article BODIES wave. THEN 1G.5 prospect-journey audit → 1H file audit → 1I multi-breakpoint browser audit (mandatory pre-ship, needs fresh context) → 1J /optimus-review.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged.
+
+---
+
+### Session 2 — continued (Stage 1F SEO + homepage smoke-audit + Error #56 surface-ramp fix)
+**Intent:** Ship the SEO/entity layer, then visually de-risk the 17-pages-built-blind before adding more.
+**Completed:**
+- **Stage 1F SEO/AEO (7f8efe3):** `sitemap.ts` (28 public URLs, /pricing excluded), `robots.ts` (disallow /pricing + /api), `StructuredData.tsx` (Person ⇄ ProfessionalService @id cross-ref, guarded sameAs empty until real LinkedIn, knowsAbout/areaServed — Pattern #100), Article+BreadcrumbList JSON-LD on blog posts, FAQPage JSON-LD on /faq, no title.template (no double-branding). `next build` clean (37 routes incl. sitemap.xml + robots.txt).
+- **Homepage visual smoke-audit:** ran the canonical `audit-capture.mjs` (Playwright, 4 viewports) against the dev server. Findings: hero renders premium + on-brand (real machine-shop movie header, dark-left text zone, brass eyebrow/CTA); **0 console errors/warnings, 0 horizontal overflow at every viewport**; BUT `tones=DDDDDDDDD` — all 9 bands read as one near-uniform dark field.
+- **Error #56 surface-ramp fix (ddd4a10):** root cause = `--bg-elevated #161B22` sat only ~1.08:1 above the `#0E1116` base (8 RGB pts → perceptually invisible at viewport scale, the documented Error #56 trap). Retuned the raised ramp coherently: `--bg-elevated → #222C38` (~1.38:1 readable step), `--bg-card → #2A3543`, `--border-subtle → #37414E` (base < elevated < card < hairline preserved). Re-audited: bands now visually alternate; still single-dark-theme, no white. Updated design-system.md §2 to match (constitution rule). All surfaces use var() tokens so the change cascaded to all 17 pages with zero component edits.
+**Decisions Made:**
+- **Asked Anthony about the dark-monotone issue; he delegated the call to me as senior eng/designer ("backed by logic").** Chose to raise the elevated tone (not keep-pure-dark, not gradients-only) — backed by WCAG luminance math (1.08:1 → 1.38:1 boundary) + our own Error #56. A readable step that preserves the approved dark instrument thesis.
+- The `tones=DDDDDDDDD` algorithm output is a FALSE signal for a single-dark-theme build (it's a light-vs-dark binary classifier; #222C38 luminance ~0.024 is still below its "light" threshold). For this build, judge section rhythm by EYE, not the tones string. **Carry this into the Stage 1I audit: do not auto-fail on DDDDDDDDD — verify alternation visually instead.**
+**Current State:** SEO + entity graph live; homepage visually verified premium + now has readable section rhythm. Dev server was running for the audit (kill before next heavy step). Build clean.
+**Next Session Starts At:** Blog article BODIES (architecture: per-slug body files + render via react-markdown in /blog/[slug]; start with the 3 flagships — onshoring/AS9100+CMMC/backlog-to-cash — then the rest) + blog card/header IMAGES (Higgsfield Flux 2, cost-gate Step 0 + ≤4/batch per the MCP-disconnect memory). THEN 1G.5 prospect-journey audit → 1H pre-launch-auditor (file-level) → 1I full multi-breakpoint browser audit (all routes, by EYE for tone) → 1J /optimus-review.
+**Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL is the entity-graph launch-blocker).
