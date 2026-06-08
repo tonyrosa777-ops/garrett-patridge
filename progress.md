@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1G blog BODIES done (12 articles written + wired); next = blog IMAGES (Higgsfield, gated) → audit gates 1G.5/1H/1I/1J
+**Current Phase:** Phase 1 — Stage 1G COMPLETE (12 blog bodies + 24 distinct blog images, all wired); next = audit gates 1G.5 prospect-journey → 1H file → 1I full browser → 1J /optimus-review
 
 ---
 
@@ -19,7 +19,7 @@
 | 3 | Content + Animation / Hero (Stage 1D) | ✅ Done (hero + site.ts + quiz.ts) |
 | 4 | All Pages — core + blog + booking (Stage 1E) | ✅ Done (35 routes build clean) |
 | 5 | SEO + AEO + GEO (Stage 1F) | ✅ Done (sitemap/robots/entity graph/JSON-LD) |
-| 6 | Assets — hero done; blog BODIES done; blog IMAGES next (Stage 1G) | 🔄 Images pending |
+| 6 | Assets — hero + 12 blog bodies + 24 blog images (Stage 1G) | ✅ Done |
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
 | 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ⬜ Not Started |
@@ -211,4 +211,19 @@
 **Decisions Made:** `.md` files (not TS string exports) to avoid markdown-in-TS escaping; bodies start AFTER the directAnswer (which the PageHeader already shows) to avoid duplication; the SEO Article JSON-LD added in 1F was preserved.
 **Current State:** All site content complete — 17 pages + 12 full blog articles + SEO/entity graph + hero, building clean, homepage visually verified. Remaining = blog IMAGES + the audit gates.
 **Next Session Starts At — blog IMAGES (Higgsfield, GATED):** card + header per article = 24 images. Per the Higgsfield Credit-Spend Gate: (Step 0) read `~/.claude/skills/optimus-higgsfield-*` / the blog-image pattern + cite it; confirm MCP availability; (Step 1) `mcp__higgsfield__balance` (Flux 2 / Nano Banana = 0 cr / unlimited on Plus, but run the check); WRITE ALL 24 PROMPTS FIRST + review as a set (distinct + subject-specific + MODERN, never antique props — anti-slop); generate `model: flux_2` in batches of **≤4** (MCP batch-disconnect memory); VISUAL-REVIEW every image before commit; save to `/public/images/blog/<slug>-card.jpg` + `-header.jpg`; wire into the blog index cards + post PageHeader (replace the placeholder boxes). Then the about/niche/method industrial-still placeholders (optional for demo). THEN 1G.5 prospect-journey audit → 1H file audit → **1I full multi-breakpoint browser audit across ALL 17 routes (I have only smoke-checked the homepage so far — judge tone by EYE, the `tones` algorithm false-reports DDDDDDDDD for this single-dark-theme build)** → 1J /optimus-review.
+**Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
+
+---
+
+### Session 2 — continued (Stage 1G blog IMAGES — 24 generated, distinctness-verified, wired)
+**Intent:** Generate the blog card+header images (Higgsfield), with explicit cross-set distinctness verification (Anthony's instruction).
+**Completed (4f50e3f):**
+- Higgsfield gate cleared (MCP live, 324 cr Plus, Flux 2 = 0 cr; cited `higgsfield-reusable-blog-image-generator.md` + design-system §6).
+- Locked 12 mutually-distinct subjects (enclave / dock / rework-bin / new-install / mezzanine-whiteboard / metrology-CMM / bar-stock racks / SCADA-screen / Gemba-map / risk-indicator-panel / tool-shadow-board / robot-cell); card + header as different shots. Delegated generation+save+first-review+wiring to one subagent (sequential gen, MCP-stable, 0 drops; it regenerated the hidden-factory card for a baked-in "TO-REWORK" text stencil).
+- **Distinctness verified by ME (the explicit ask):** built sharp contact sheets and viewed the full 12-card set. Found 2 real issues — `dfars` rendered OFF-SUBJECT (a control cabinet, not the intended receiving dock) and `ai` was a near-duplicate of `it-ot` (both glowing teal-gauge screens). Regenerated dfars-card + dfars-header (→ true receiving dock) and ai-card (→ hands + yellow robot arm + part) with sharper divergent prompts. Re-reviewed: all 12 now clearly distinct, none interchangeable.
+- Wired: `next/image` cards on /blog index (featured + grid), 16:9 header band on each post; prompts archived in `web/scripts/prompts/`. `next build` clean (37 routes).
+**Files touched:** `web/public/images/blog/*` (24 png), `web/scripts/prompts/*` (24 txt), `web/src/app/blog/page.tsx` (card images), `web/src/app/blog/[slug]/page.tsx` (header image band), `.gitignore` (audit scratch dirs).
+**Discovered (carry into Stage 1I audit):** **Scroll-triggered reveals (FadeUp/Stagger, opacity 0→1 on `useInView`) do NOT fire in a full-page screenshot** — off-screen content shows BLANK in `audit-capture.mjs` full-page captures even though it renders fine on real user scroll (confirmed: /blog cards were in the server HTML but invisible in the full-page png). For Stage 1I, judge below-fold content via the SCROLLED captures / per-viewport folds, not the `-full.png`, OR the audit may false-flag "empty sections." (This also re-explains the earlier homepage `-full.png` looking sparse — partly this artifact, though the Error #56 tone retune was still independently correct.)
+**Current State:** ALL content + assets complete — 17 pages, 12 cited blog articles, 24 distinct images, hero, SEO/entity graph. Building clean. Dev server stopped.
+**Next Session Starts At:** 1G.5 prospect-journey conversion audit (read-only, multi-persona) → 1H pre-launch-auditor (file-level) → **1I full multi-breakpoint browser audit across ALL 17 routes** (only homepage + blog-index smoke-checked so far; judge tone by EYE — `tones` algo false-reports DDDDDDDDD on this single-dark build; judge below-fold via scrolled/fold captures, not -full.png, due to the reveal artifact above) → 1J /optimus-review. Optional polish: about/niche/method industrial-still placeholders still use token boxes (acceptable for demo).
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
