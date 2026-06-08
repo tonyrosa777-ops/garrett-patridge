@@ -33,3 +33,4 @@ web/next-env.d.ts
 web/.next/
 web/tsconfig.tsbuildinfo
 web/audits-blog/
+.optimus-review/

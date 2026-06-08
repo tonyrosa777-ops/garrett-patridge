@@ -73,8 +73,9 @@ export default function DiagnosticClient() {
   const goBack = useCallback(() => {
     if (questionIndex === 0 || pendingIndex !== null) return;
     setDirection(-1);
-    // Discard the answer for the question we are leaving; re-answering rewrites cleanly.
-    setAnswers((prev) => prev.slice(0, questionIndex - 1));
+    // Drop only the answer for the question we are LEAVING; KEEP the returned-to question's
+    // answer so it re-highlights (CLAUDE.md quiz contract). Re-answering rewrites it cleanly.
+    setAnswers((prev) => prev.slice(0, questionIndex));
     setQuestionIndex((i) => i - 1);
   }, [questionIndex, pendingIndex]);
 
@@ -179,8 +180,14 @@ export default function DiagnosticClient() {
                 </h1>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {/* When idle (not mid-glow), re-highlight the saved answer for this
+                      question so back-navigation shows the prior pick (CLAUDE.md contract). */}
                   {QUIZ_QUESTIONS[questionIndex].options.map((opt, optionIndex) => {
+                    const savedType =
+                      pendingIndex === null ? answers[questionIndex] : undefined;
                     const isPending = pendingIndex === optionIndex;
+                    const isSaved = savedType !== undefined && opt.type === savedType;
+                    const active = isPending || isSaved;
                     const dimmed = pendingIndex !== null && !isPending;
                     return (
                       <button
@@ -190,11 +197,11 @@ export default function DiagnosticClient() {
                         disabled={pendingIndex !== null}
                         className="diag-option rounded p-5 text-left transition-all duration-300 disabled:cursor-default"
                         style={{
-                          background: isPending
+                          background: active
                             ? "color-mix(in srgb, var(--accent) 12%, var(--bg-card))"
                             : "var(--bg-card)",
                           border: `1px solid ${
-                            isPending ? "var(--accent)" : "var(--border-subtle)"
+                            active ? "var(--accent)" : "var(--border-subtle)"
                           }`,
                           opacity: dimmed ? 0.3 : 1,
                           color: "var(--text-primary)",

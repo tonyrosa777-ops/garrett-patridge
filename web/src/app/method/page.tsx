@@ -162,7 +162,7 @@ export default function MethodPage() {
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:mt-16 lg:grid-cols-2 lg:gap-10">
           <FadeUp>
-            <InstrumentTable caption="Before — the fault readout">
+            <InstrumentTable caption="Before: the fault readout">
               {problem.rows.map((row) => (
                 <StatusRow
                   key={row.label}
@@ -175,7 +175,7 @@ export default function MethodPage() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <InstrumentTable caption={`After — Standard Work 2.0${TM} installed`}>
+            <InstrumentTable caption={`After: Standard Work 2.0${TM} installed`}>
               {FAULT_RESPONSES.map((res) => (
                 <StatusRow
                   key={res.label}

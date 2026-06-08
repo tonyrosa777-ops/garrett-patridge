@@ -4,8 +4,8 @@
 **Client:** Garrett Partridge | Brookline, NH (serving Greater Boston & Southern NH)
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
-**Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1I multi-breakpoint browser audit PASSED (13 routes, 0 errors, 0 overflow, all verified by eye); next = 1J /optimus-review (final gate) [1H file-audit folded into 1I findings — no FAILs]
+**Last Updated:** 2026-06-08 (Session 2)
+**Current Phase:** ✅ PHASE 1 COMPLETE — full build swept + all audit gates passed (1G.5 conversion, 1I browser, 1J /optimus-review CLEARED). Site is demo-ready. Next = Phase 2 (launch/infra + client revision + close) — post-demo, needs credentials.
 
 ---
 
@@ -23,8 +23,8 @@
 | 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ✅ Done (4 in-scope fixes applied; #4 trust = launch-blocker) |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ✅ Folded into 1I — 0 FAILs |
 | 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ✅ PASSED (13 routes, 0 errors/overflow) |
-| 10 | /optimus-review code-review gate (Stage 1J) | 🔄 Next (final gate) |
-| 11 | Launch + Client Revision + Close (Phase 2) | ⬜ Not Started |
+| 10 | /optimus-review code-review gate (Stage 1J) | ✅ CLEARED (4 BUG fixed, 8 DESIGN waived) |
+| 11 | Launch + Client Revision + Close (Phase 2) | ⬜ Post-demo (needs credentials) |
 
 > **NOTE — no Shop phase.** The standard "shop scaffold + decision gate" stage is removed
 > for this project per Anthony's 2026-06-07 directive (see Build-Scope Decisions below).
@@ -212,6 +212,20 @@
 **Current State:** All site content complete — 17 pages + 12 full blog articles + SEO/entity graph + hero, building clean, homepage visually verified. Remaining = blog IMAGES + the audit gates.
 **Next Session Starts At — blog IMAGES (Higgsfield, GATED):** card + header per article = 24 images. Per the Higgsfield Credit-Spend Gate: (Step 0) read `~/.claude/skills/optimus-higgsfield-*` / the blog-image pattern + cite it; confirm MCP availability; (Step 1) `mcp__higgsfield__balance` (Flux 2 / Nano Banana = 0 cr / unlimited on Plus, but run the check); WRITE ALL 24 PROMPTS FIRST + review as a set (distinct + subject-specific + MODERN, never antique props — anti-slop); generate `model: flux_2` in batches of **≤4** (MCP batch-disconnect memory); VISUAL-REVIEW every image before commit; save to `/public/images/blog/<slug>-card.jpg` + `-header.jpg`; wire into the blog index cards + post PageHeader (replace the placeholder boxes). Then the about/niche/method industrial-still placeholders (optional for demo). THEN 1G.5 prospect-journey audit → 1H file audit → **1I full multi-breakpoint browser audit across ALL 17 routes (I have only smoke-checked the homepage so far — judge tone by EYE, the `tones` algorithm false-reports DDDDDDDDD for this single-dark-theme build)** → 1J /optimus-review.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
+
+---
+
+### Session 2 — continued (Stage 1J /optimus-review — CLEARED; PHASE 1 COMPLETE)
+**Intent:** Run the final multi-agent code-review gate; resolve findings.
+**Completed:** Ran `/optimus-review --paths web/src` (8 parallel Sonnet specialists + Opus verifier) against an empty-tree first-run diff of web/src (code+copy, blog .md excluded as already-verified). Raw 15 findings → verifier classified **4 BUG / 9 DESIGN / 2 suppressed**. All authorized overrides (no shop, /pricing demo tool, single-dark theme, DEMO COPY trust layer, all-dark tones signal) correctly left unflagged.
+- **4 BUGs FIXED (orchestrator inline):** (1+2) two rendered em-dash captions on /method → colons; (3) book/route.ts origin allowlist trusted any `*.vercel.app` → now only this deployment's `VERCEL_URL` host; (4) slots/route.ts live times used `getHours()` (UTC on Vercel) → now `Intl.DateTimeFormat` in America/New_York so live + seeded times agree.
+- **DESIGN-1 FIXED:** quiz back-nav now keeps + re-highlights the returned-to answer (CLAUDE.md quiz contract).
+- **DESIGN-2..9 WAIVED** for the demo with one-line rationale each (latent/no-current-impact DRY/naming/hardening nits; no live sinks; marketing-build test standard) — all logged in REVIEW.md.
+- `next build` clean (37 routes). Full-codebase em-dash sweep: zero in rendered strings.
+**Files touched:** `web/src/app/method/page.tsx`, `web/src/app/api/calendly/book/route.ts`, `web/src/app/api/calendly/slots/route.ts`, `web/src/app/diagnostic/DiagnosticClient.tsx`, `REVIEW.md` (artifact + Stage 1J Resolution).
+**Decision:** full 8-agent re-run deferred — the 4 fixes were surgical single-occurrence edits (not multi-site replace_all, the Error #65 regression class) + build-verified; disproportionate to re-sweep. Re-run remains free if desired.
+**Current State:** ✅ PHASE 1 COMPLETE. Site is demo-ready (June 9): 17 pages, 12 cited blog articles, 24 distinct images, premium movie hero, custom booking, diagnostic + CMMC scorer, SEO/entity graph, conversion leaks closed, all audit gates passed, building clean, pushed to GitHub.
+**Next (Phase 2 — post-demo, needs credentials/client):** Vercel import + Root Directory = `web` + env vars; Resend domain + contact email wire; connect domain; the public-launch trust-layer gate (real testimonials + ≥1 case-study number + LinkedIn URL — the Tuesday ask); /pricing deletion is the pre-launch step; then /retro.
 
 ---
 

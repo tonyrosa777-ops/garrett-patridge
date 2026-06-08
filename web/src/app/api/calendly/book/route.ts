@@ -42,13 +42,10 @@ function originAllowed(req: NextRequest): boolean {
   // Local dev convenience.
   allowed.add("http://localhost:3000");
   allowed.add("http://127.0.0.1:3000");
-  // Vercel preview deployments end in .vercel.app.
-  try {
-    const host = new URL(origin).host;
-    if (host.endsWith(".vercel.app")) return true;
-  } catch {
-    return false;
-  }
+  // This deployment's OWN Vercel host (preview or prod), injected by Vercel as VERCEL_URL
+  // (host only, no protocol). No blanket "*.vercel.app" wildcard — that would trust any
+  // attacker-hosted Vercel subdomain (BUG-3, optimus-review Stage 1J).
+  if (process.env.VERCEL_URL) allowed.add(`https://${process.env.VERCEL_URL}`);
 
   return allowed.has(origin);
 }

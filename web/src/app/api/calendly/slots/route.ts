@@ -82,11 +82,17 @@ async function liveSlots(date: string, apiKey: string, eventTypeUri: string): Pr
     .filter((s) => s.status === undefined || s.status === "available")
     .map((s) => {
       if (!s.start_time) return null;
-      // start_time is an ISO string; render the local clock time as HH:MM.
-      const d = new Date(s.start_time);
-      const hh = String(d.getHours()).padStart(2, "0");
-      const mm = String(d.getMinutes()).padStart(2, "0");
-      return `${hh}:${mm}`;
+      // start_time is an ISO string. Format in the BUSINESS timezone (America/New_York),
+      // not the runtime-local zone (UTC on Vercel serverless) — otherwise a 9:00 ET slot
+      // returns as "14:00" and disagrees with the seeded business-hour wall-clock times
+      // (BUG-4, optimus-review Stage 1J).
+      const hm = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(new Date(s.start_time));
+      return hm === "24:00" ? "00:00" : hm;
     })
     .filter((t): t is string => t !== null);
 
