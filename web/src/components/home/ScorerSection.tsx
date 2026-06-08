@@ -58,7 +58,7 @@ export default function ScorerSection() {
               ))}
             </ul>
             <p
-              className="mt-5 text-[13px]"
+              className="mt-5 text-[14px] leading-relaxed"
               style={{ color: "var(--text-muted)" }}
             >
               Ten questions, a readiness band, the gaps named in plain language. No sales call,

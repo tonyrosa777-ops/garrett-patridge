@@ -255,7 +255,7 @@ export default function ScorerClient() {
           </div>
 
           <p
-            className="mt-6 max-w-2xl text-[13px] leading-relaxed"
+            className="mt-6 max-w-2xl text-[14px] leading-relaxed"
             style={{ color: "var(--text-muted)" }}
           >
             This is a self-assessment for your own planning. It is not a C3PAO assessment and it
@@ -373,7 +373,7 @@ export default function ScorerClient() {
           <FadeUp delay={0.2}>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p
-                className="max-w-2xl text-[13px] leading-relaxed"
+                className="max-w-2xl text-[14px] leading-relaxed"
                 style={{ color: "var(--text-muted)" }}
               >
                 This band is a self-assessment for your own planning. It is not a C3PAO

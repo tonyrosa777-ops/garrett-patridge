@@ -214,7 +214,7 @@ export default function DiagnosticClient() {
                           {opt.label}
                         </span>
                         <span
-                          className="mt-2 block text-[13px]"
+                          className="mt-2 block text-[14px] leading-relaxed"
                           style={{ color: "var(--text-muted)" }}
                         >
                           {opt.detail}

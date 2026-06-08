@@ -42,7 +42,7 @@ export default function EngagementsSection() {
                 {eng.tagline}
               </p>
               <p
-                className="mt-4 text-[14px] leading-relaxed"
+                className="mt-4 text-[15px] leading-relaxed"
                 style={{ color: "var(--text-secondary)" }}
               >
                 {eng.forWho}
@@ -52,7 +52,7 @@ export default function EngagementsSection() {
                 {eng.whatYouGet.slice(0, 3).map((item) => (
                   <li
                     key={item}
-                    className="grid grid-cols-[auto_1fr] gap-2.5 text-[13px] leading-relaxed"
+                    className="grid grid-cols-[auto_1fr] gap-2.5 text-[14px] leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     <span style={{ color: "var(--accent)" }} aria-hidden="true">

@@ -30,9 +30,9 @@ Garrett Partridge is the operations architect a New England defense-industrial-b
 | `--bg-base` | `#0E1116` | Aliased to page base (dark theme). Dark sections. | market-intel §5 |
 | `--bg-elevated` | `#222C38` | **The "light" (raised) section tint — gunmetal cool-slate.** Used for alternating bands. **Retuned 2026-06-07 from `#161B22` → `#222C38` (Error #56):** the original sat only ~8 RGB / ~1.08:1 above the base, perceptually invisible at viewport scale, so the homepage section rhythm read as one flat dark field (confirmed by the Stage-1I-style smoke capture, `tones=DDDDDDDDD`). `#222C38` gives a ~1.38:1 boundary step — a *readable* surface change that stays unmistakably deep-dark and machined (still NEVER white/near-white). The whole raised ramp moved up coherently to preserve base < elevated < card < hairline. | market-intel §5 `--surface-raised`; Error #56 |
 | `--bg-card` | `#2A3543` | Cards, panels, hover/active surfaces. Retuned with the ramp (was `#1F262E`) so cards read raised on BOTH the dark and the lighter elevated bands. | market-intel §5 `--surface-overlay`; Error #56 |
-| `--text-primary` | `#E6E8EB` | Body + headings — brushed aluminum. All hero text. WCAG: 13.9:1 on `--primary` (AAA). | market-intel §5 `--text-primary` |
-| `--text-secondary` | `#A6ADB6` | Captions, metadata, sub-labels. 6.6:1 on `--primary` (AA). | market-intel §5 `--text-secondary` |
-| `--text-muted` | `#6E7681` | Fine print, disabled, footnotes. 3.4:1 — large/non-essential text only. | market-intel §5 `--text-muted` |
+| `--text-primary` | `#E6E8EB` | Headings + emphasis — brushed aluminum. All hero text. WCAG: 13.9:1 on `--primary` (AAA). | market-intel §5 `--text-primary` |
+| `--text-secondary` | `#C7CDD5` | **Body + detail copy** (the workhorse). **Brightened 2026-06-08 from `#A6ADB6`** — the old value read dim/illegible on dark + card surfaces; new value is ~10:1 on `--primary`, ~7.6:1 on the lightest card `--bg-card` (AAA/AA). | market-intel §5 + 2026-06-08 legibility pass |
+| `--text-muted` | `#9AA2AD` | Captions, metadata, fine print. **Brightened 2026-06-08 from `#6E7681`** (which was ~3.4:1, below AA, yet used for body detail in places). New value ~6:1 on `--primary`, ~4.8:1 on `--bg-card` (AA for normal text). | market-intel §5 + 2026-06-08 legibility pass |
 
 ### Extended brand tokens (declare in globals.css alongside the 9 above)
 

@@ -17,10 +17,13 @@
   --accent: #B8864B;
   --accent-hot: #D9A55A;
 
-  /* Text — brushed aluminum */
+  /* Text — brushed aluminum. Brightened 2026-06-08 for legibility: the old
+     secondary (#A6ADB6) + muted (#6E7681) read as dim/illegible on the dark + card
+     surfaces (muted was ~3.4:1, below AA). New values clear AA even on the lightest
+     card (#2A3543): secondary ~7.6:1, muted ~4.8:1. Headings stay --text-primary. */
   --text-primary: #E6E8EB;
-  --text-secondary: #A6ADB6;
-  --text-muted: #6E7681;
+  --text-secondary: #C7CDD5;
+  --text-muted: #9AA2AD;
 
   /* Lines */
   --border-subtle: #37414E;    /* hairline — raised with the surface ramp so seams stay visible on the lighter elevated/card tones (Error #56 retune) */

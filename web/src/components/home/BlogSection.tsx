@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CtaLink from "@/components/ui/Button";
@@ -39,10 +40,17 @@ export default function BlogSection() {
             style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
           >
             <div
-              className="mb-6 aspect-[3/2] w-full rounded border"
+              className="relative mb-6 aspect-[3/2] w-full overflow-hidden rounded border"
               style={{ background: "var(--bg-elevated)", borderColor: "var(--border-subtle)" }}
-              aria-hidden="true"
-            />
+            >
+              <Image
+                src={`/images/blog/${featured.slug}-card.png`}
+                alt={featured.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 600px"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
             <p
               className="font-mono text-[11px] uppercase tracking-[0.16em]"
               style={{ color: "var(--accent)" }}
@@ -77,10 +85,17 @@ export default function BlogSection() {
                 style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
               >
                 <div
-                  className="hidden h-24 w-32 shrink-0 rounded border sm:block"
+                  className="relative hidden h-24 w-32 shrink-0 overflow-hidden rounded border sm:block"
                   style={{ background: "var(--bg-elevated)", borderColor: "var(--border-subtle)" }}
-                  aria-hidden="true"
-                />
+                >
+                  <Image
+                    src={`/images/blog/${post.slug}-card.png`}
+                    alt={post.title}
+                    fill
+                    sizes="128px"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="min-w-0">
                   <p
                     className="font-mono text-[11px] uppercase tracking-[0.16em]"
@@ -95,7 +110,7 @@ export default function BlogSection() {
                     {post.title}
                   </h3>
                   <p
-                    className="mt-2 text-[13px] leading-relaxed"
+                    className="mt-2 text-[14px] leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {post.excerpt}

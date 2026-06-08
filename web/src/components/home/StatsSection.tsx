@@ -45,7 +45,7 @@ export default function StatsSection() {
                     {stat.label}
                   </p>
                   <p
-                    className="mt-2 text-[13px] leading-relaxed"
+                    className="mt-2 text-[14px] leading-relaxed"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {stat.note}
