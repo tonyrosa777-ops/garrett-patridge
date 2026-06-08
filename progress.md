@@ -5,7 +5,7 @@
 **Business Type:** Fractional COO / operations architect for the New England defense industrial base
 **Launch Target:** June 9, 2026 DEMO (3:00 PM) | production launch TBD
 **Last Updated:** 2026-06-07 (Session 2)
-**Current Phase:** Phase 1 — Stage 1G COMPLETE (12 blog bodies + 24 distinct blog images, all wired); next = audit gates 1G.5 prospect-journey → 1H file → 1I full browser → 1J /optimus-review
+**Current Phase:** Phase 1 — code PUSHED to GitHub (origin/main); Stage 1G.5 prospect-journey audit done + in-scope conversion fixes applied; next = 1H file audit → 1I full browser audit → 1J /optimus-review
 
 ---
 
@@ -20,7 +20,7 @@
 | 4 | All Pages — core + blog + booking (Stage 1E) | ✅ Done (35 routes build clean) |
 | 5 | SEO + AEO + GEO (Stage 1F) | ✅ Done (sitemap/robots/entity graph/JSON-LD) |
 | 6 | Assets — hero + 12 blog bodies + 24 blog images (Stage 1G) | ✅ Done |
-| 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ⬜ Not Started |
+| 7 | Prospect-Journey Conversion Audit (Stage 1G.5) | ✅ Done (4 in-scope fixes applied; #4 trust = launch-blocker) |
 | 8 | Pre-Launch Audit — file-level (Stage 1H) | ⬜ Not Started |
 | 9 | Multi-Breakpoint Browser Audit (Stage 1I) | ⬜ Not Started |
 | 10 | /optimus-review code-review gate (Stage 1J) | ⬜ Not Started |
@@ -212,6 +212,24 @@
 **Current State:** All site content complete — 17 pages + 12 full blog articles + SEO/entity graph + hero, building clean, homepage visually verified. Remaining = blog IMAGES + the audit gates.
 **Next Session Starts At — blog IMAGES (Higgsfield, GATED):** card + header per article = 24 images. Per the Higgsfield Credit-Spend Gate: (Step 0) read `~/.claude/skills/optimus-higgsfield-*` / the blog-image pattern + cite it; confirm MCP availability; (Step 1) `mcp__higgsfield__balance` (Flux 2 / Nano Banana = 0 cr / unlimited on Plus, but run the check); WRITE ALL 24 PROMPTS FIRST + review as a set (distinct + subject-specific + MODERN, never antique props — anti-slop); generate `model: flux_2` in batches of **≤4** (MCP batch-disconnect memory); VISUAL-REVIEW every image before commit; save to `/public/images/blog/<slug>-card.jpg` + `-header.jpg`; wire into the blog index cards + post PageHeader (replace the placeholder boxes). Then the about/niche/method industrial-still placeholders (optional for demo). THEN 1G.5 prospect-journey audit → 1H file audit → **1I full multi-breakpoint browser audit across ALL 17 routes (I have only smoke-checked the homepage so far — judge tone by EYE, the `tones` algorithm false-reports DDDDDDDDD for this single-dark-theme build)** → 1J /optimus-review.
 **Blockers:** None blocking the demo. Tuesday-ask hard-facts unchanged (LinkedIn URL = entity-graph launch-blocker).
+
+---
+
+### Session 2 — continued (GitHub remote + Stage 1G.5 prospect-journey audit + conversion fixes)
+**Intent:** Push all code to the new GitHub repo, then run the prospect-journey conversion audit and apply its fixes.
+**Completed:**
+- **Pushed to GitHub.** Anthony created `https://github.com/tonyrosa777-ops/garrett-patridge.git`. Added remote `origin`, renamed `master`→`main`, pushed all 15 commits. Local = origin/main, in sync. (Always-Push now active — push after every commit going forward.)
+- **Stage 1G.5 Prospect-Journey Conversion Audit** (read-only agent, 5 research-derived personas inc. 2 edge audiences). Verdicts: onshoring buyer ~80% IF they hit the niche page but ~45% from the homepage; the forward-to-CFO/small-shop persona ~70% BOUNCE from the homepage; time-critical buyers leak to competitors. Two structural self-inflicted leaks found: the **3 niche pages AND the CMMC scorer were footer-only / invisible on the homepage**.
+- **In-scope fixes applied (commit below):**
+  1. **Surfaced the 3 niches on the homepage** — new `WhoIServeSection` (persona-selector card grid, light, twinkle) + nav item "Who I Serve" → `/#who-i-serve` anchor.
+  2. **Surfaced the CMMC scorer on the homepage** — new `ScorerSection` (asymmetric split with a "what it checks" field preview, dark, drift) → `/tools/cmmc-readiness`.
+  3. **Fast-lane CTA differentiation** — the paid consult rung now reads "Time-critical? Start with a paid consult, available this week" with its own CTA "Book a Paid Strategic Consult" (distinct from the waitlist's "Request a Strategic Conversation"; compliant — paid, not a free call).
+  4. **National-reach qualifier** added to the PE niche (diligence/strategic = national; on-site/embedded = New England) so the regional framing stops repelling the national PE buyer.
+  - Both new bands appended at positions 8-9 (Blog D → WhoIServe L → Scorer D → Capacity L → Footer D) — ZERO re-tone of existing sections, strict alternation preserved, adjacent motions distinct (grain→twinkle→drift→orbs). Rhythm-map comment updated.
+**Files touched:** `web/src/data/site.ts` (nav, capacity.consult, PE niche body), `web/src/app/page.tsx` (rhythm + 2 new bands), `web/src/components/home/WhoIServeSection.tsx` (new), `web/src/components/home/ScorerSection.tsx` (new).
+**Verified:** `next build` clean (37 routes); prerendered homepage HTML confirms the `who-i-serve` section, 3 distinct niche links, the scorer CTA + field preview, and the nav item all render.
+**Deferred (correctly — NOT fabricated):** Audit fix #4 = ship ≥1 real attributable case-study number + ≥3 attributable testimonials. This is the documented `[LAUNCH-BLOCKER]` trust gate (the buyer inspects; an invented number on Garrett's real name would read as fake). The June 9 DEMO runs on `[DEMO COPY]`; PUBLIC launch is hard-gated on real-or-empty. This audit confirmed it is the #1 credibility blocker. Client clearance (Tuesday ask).
+**Current State:** Conversion leaks closed, code pushed. Building clean.
 
 ---
 

@@ -34,6 +34,7 @@ export const siteConfig = {
   nav: [
     { label: "Method", href: "/method" },
     { label: "Engagements", href: "/engagements" },
+    { label: "Who I Serve", href: "/#who-i-serve" },
     { label: "Insights", href: "/blog" },
     { label: "About", href: "/about" },
     { label: "⬥ Pricing", href: "/pricing", internal: true },
@@ -342,10 +343,10 @@ export const capacity: CapacitySection = {
     cta: { label: "Request a Strategic Conversation", href: "/booking" },
   },
   consult: {
-    label: "Strategic Consult, available now",
+    label: "Time-critical? Start with a paid consult, available this week",
     detail:
-      "A paid, time-boxed working session on one defined problem, available without waiting for a full slot to open. The fastest way to put the constraint in front of an operator this week.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+      "A paid, time-boxed working session on one defined problem, available without waiting for a full slot to open. If a prime letter, a CMMC window, or an LOI is on a clock you do not control, this is the fastest way to put the constraint in front of an operator this week.",
+    cta: { label: "Book a Paid Strategic Consult", href: "/booking" },
   },
 };
 
@@ -817,6 +818,7 @@ export const niches: Niche[] = [
     body: [
       "Manufacturing diligence on a 21-day clock rewards an operator who can read a floor, not just a data room. The gap between the model and the shop is where value leaks after the deal closes.",
       "A polite assessment confirms what the seller told you. A forensic read tells you what the seller did not know to mention.",
+      "Diligence and strategic engagements run nationally. On-site floor work and embedded operating roles are concentrated across New England, where the defense industrial base I know best is dense.",
     ],
     mechanism: [
       "Forensic operational due diligence that surfaces the Hidden Factory, the working-capital trap, and the compliance gaps",
