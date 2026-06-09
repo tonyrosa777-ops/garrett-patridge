@@ -161,7 +161,7 @@ export default function ScorerClient() {
           </h2>
           <p
             className="mt-5 max-w-2xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
           >
             Answer each control question Yes, Partial, or No. Partial means it exists but is
             not documented or not enforced everywhere. Nothing is sent and no email is asked.

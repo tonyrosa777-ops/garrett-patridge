@@ -203,7 +203,7 @@ export default function PricingClient() {
           </h2>
           <p
             className="mt-5 max-w-2xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
           >
             The price is the price. Every package is a premium, conversion-engineered build on
             the same foundation. Pro is where most authority brands land.
@@ -319,7 +319,7 @@ export default function PricingClient() {
           </h2>
           <p
             className="mt-5 max-w-2xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
           >
             Set a realistic engagement value and how many you close in a month. The build cost
             is one line against the revenue a working pipeline returns.

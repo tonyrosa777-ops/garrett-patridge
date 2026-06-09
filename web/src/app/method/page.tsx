@@ -61,7 +61,7 @@ export default function MethodPage() {
         </h2>
         <p
           className="mt-5 max-w-2xl"
-          style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+          style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
         >
           The discipline of lean standard work, taken off the production floor and applied to
           the whole company. Back office and shop floor on one auditable system.
@@ -154,7 +154,7 @@ export default function MethodPage() {
         </h2>
         <p
           className="mt-5 max-w-2xl"
-          style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+          style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
         >
           The same faults you already feel, scored the way a buyer scores a part. Here each one
           reads CLEARED, with the pillar that does the clearing named on the line.
@@ -205,7 +205,7 @@ export default function MethodPage() {
             </h2>
             <p
               className="mt-5 max-w-2xl"
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+              style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
             >
               The four pillars are not a deliverable on their own. They get installed through one
               of three ways to work, scoped to the constraint you are actually fighting.

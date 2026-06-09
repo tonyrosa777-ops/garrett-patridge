@@ -169,7 +169,7 @@ export default function AboutPage() {
             style={{
               borderColor: "var(--accent)",
               color: "var(--text-primary)",
-              fontSize: "var(--text-body)",
+              fontSize: "var(--text-lead)",
             }}
           >
             {proof.authorityLine}
@@ -192,7 +192,7 @@ export default function AboutPage() {
                 <StaggerItem key={line.slice(0, 32)}>
                   <p
                     className="leading-relaxed"
-                    style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+                    style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
                   >
                     {line}
                   </p>

@@ -191,7 +191,7 @@ export default function TestimonialsClient() {
           <h2 className="mt-4" style={{ fontSize: "var(--text-h2)", color: "var(--text-primary)" }}>
             Put your constraint in front of an operator.
           </h2>
-          <p className="mt-5 text-[var(--text-body)]" style={{ color: "var(--text-secondary)" }}>
+          <p className="mt-5 text-[var(--text-lead)] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             A maximum of four concurrent engagements. Name your trigger when you request the
             conversation and receive a realistic timing window within 48 hours.
           </p>

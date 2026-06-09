@@ -119,8 +119,8 @@ export default async function EngagementDetailPage({
             Put this engagement in front of an operator.
           </h2>
           <p
-            className="mx-auto mt-4 max-w-xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+            className="mx-auto mt-4 max-w-xl leading-relaxed"
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
           >
             Every engagement opens with a strategic conversation. Name your trigger and I respond
             within 48 hours with a realistic timing window.

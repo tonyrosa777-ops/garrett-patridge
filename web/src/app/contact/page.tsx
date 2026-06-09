@@ -48,8 +48,8 @@ export default function ContactPage() {
           <div>
             <Eyebrow>How to reach Garrett</Eyebrow>
             <p
-              className="mt-4 max-w-md"
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+              className="mt-4 max-w-md leading-relaxed"
+              style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
             >
               The booking flow is the front door. It puts a real timing window in
               front of you, not a queue.

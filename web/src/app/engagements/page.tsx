@@ -139,8 +139,8 @@ export default function EngagementsPage() {
           {capacity.body.map((para) => (
             <p
               key={para}
-              className="mt-4 max-w-2xl"
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+              className="mt-4 max-w-2xl leading-relaxed"
+              style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
             >
               {para}
             </p>
@@ -175,8 +175,8 @@ export default function EngagementsPage() {
             Name the trigger. Get a realistic window in 48 hours.
           </h2>
           <p
-            className="mx-auto mt-4 max-w-xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+            className="mx-auto mt-4 max-w-xl leading-relaxed"
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
           >
             A prime supplier letter, a CMMC audit window, an LOI in diligence. Tell me which
             one is running and I respond within 48 hours with a realistic timing window.

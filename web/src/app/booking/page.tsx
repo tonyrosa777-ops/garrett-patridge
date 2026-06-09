@@ -35,7 +35,7 @@ export default function BookingPage() {
           <Eyebrow>How a conversation starts</Eyebrow>
           <p
             className="mt-4 max-w-2xl"
-            style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)", lineHeight: 1.65 }}
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)", lineHeight: 1.65 }}
           >
             {body[1]}
           </p>

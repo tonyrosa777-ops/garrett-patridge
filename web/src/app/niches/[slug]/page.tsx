@@ -78,7 +78,8 @@ export default async function NichePage({
             {n.body.map((para) => (
               <p
                 key={para}
-                style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+                className="leading-relaxed"
+                style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
               >
                 {para}
               </p>
@@ -169,8 +170,8 @@ export default async function NichePage({
               Put the constraint in front of an operator.
             </h2>
             <p
-              className={`mt-4 max-w-xl ${showTool ? "" : "mx-auto"}`}
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+              className={`mt-4 max-w-xl leading-relaxed ${showTool ? "" : "mx-auto"}`}
+              style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
             >
               Name your trigger when you request the conversation, a prime supplier letter, a
               CMMC window, an LOI in diligence, and I respond within 48 hours with a realistic
