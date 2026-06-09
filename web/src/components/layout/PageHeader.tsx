@@ -45,8 +45,8 @@ export default function PageHeader({
 
       {intro ? (
         <p
-          className="mt-6 max-w-2xl"
-          style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+          className="mt-6 max-w-2xl leading-relaxed"
+          style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)" }}
         >
           {intro}
         </p>

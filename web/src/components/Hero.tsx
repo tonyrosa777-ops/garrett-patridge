@@ -81,7 +81,8 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            style={{ color: "var(--text-secondary)", maxWidth: "34rem", textShadow: "0 1px 16px rgba(0,0,0,0.5)" }}
+            className="leading-relaxed"
+            style={{ color: "var(--text-secondary)", fontSize: "var(--text-lead)", maxWidth: "36rem", textShadow: "0 1px 16px rgba(0,0,0,0.5)" }}
           >
             {hero.subhead}
           </motion.p>

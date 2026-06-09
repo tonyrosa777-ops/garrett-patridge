@@ -47,6 +47,10 @@
   --text-display: clamp(2.5rem, 6vw, 4.5rem);
   --text-h2: clamp(1.875rem, 4vw, 3rem);
   --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  /* Lead/intro paragraph — sits BETWEEN body and h3 so an intro under a big display
+     header reads balanced, not tiny. Fixes the recurring "72px header + 16px body"
+     scale mismatch (PageHeader intros, hero subheads, quiz result bodies). */
+  --text-lead: clamp(1.1875rem, 1.55vw, 1.4375rem);
   --text-body: clamp(1rem, 1.05vw, 1.125rem);
   --text-eyebrow: 0.8125rem;
   --text-fine: 0.875rem;

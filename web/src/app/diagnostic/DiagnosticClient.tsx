@@ -144,7 +144,7 @@ export default function DiagnosticClient() {
               className="mx-auto mt-6 max-w-2xl leading-relaxed"
               style={{
                 color: "var(--text-primary)",
-                fontSize: "clamp(1.125rem, 1.8vw, 1.375rem)",
+                fontSize: "var(--text-lead)",
               }}
             >
               Six questions, about two minutes. You will name the fault you are actually
@@ -293,11 +293,15 @@ export default function DiagnosticClient() {
               </h1>
             </div>
 
-            <div className="mx-auto mt-8 max-w-2xl space-y-5">
+            <div className="mx-auto mt-8 max-w-3xl space-y-6">
               {QUIZ_RESULTS[resultType].body.map((para, i) => (
                 <p
                   key={i}
-                  style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+                  className="leading-relaxed"
+                  style={{
+                    color: i === 0 ? "var(--text-primary)" : "var(--text-secondary)",
+                    fontSize: "var(--text-lead)",
+                  }}
                 >
                   {para}
                 </p>
