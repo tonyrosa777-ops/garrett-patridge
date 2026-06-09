@@ -4,7 +4,6 @@ import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Card from "@/components/ui/Card";
 import CtaLink from "@/components/ui/Button";
-import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import FadeUp from "@/components/animations/FadeUp";
 import { engagements, capacity, seo } from "@/data/site";
 
@@ -37,84 +36,97 @@ export default function EngagementsPage() {
         intro="Each engagement is scoped to the constraint you are actually fighting. A fixed-scope diagnostic, an embedded fractional COO, or a strategic consultancy aimed at one defined event. Every path opens with a strategic conversation, not a pitch."
       />
 
-      {/* ENGAGEMENT CARDS — light / grain — staggered, not uniform (design-system §4). */}
+      {/* ENGAGEMENT CARDS — light / grain — EQUAL full-width cards, centered + aligned,
+          identical balanced 2-column interior (Error #109: symmetry / visual order). No
+          offset/width chaos. Each card: identity + how + CTAs (left), what-you-get (right). */}
       <Section tone="light" motion="grain">
-        <Eyebrow>The engagements</Eyebrow>
-        <h2 className="mt-3 max-w-3xl" style={{ fontSize: "var(--text-h2)" }}>
-          Pick the depth the situation calls for.
-        </h2>
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow>The engagements</Eyebrow>
+          <h2
+            className="mt-3 font-display font-bold"
+            style={{ fontSize: "var(--text-h2)", color: "var(--text-primary)" }}
+          >
+            Pick the depth the situation calls for.
+          </h2>
+        </div>
 
-        <Stagger className="mt-12 flex flex-col gap-6 md:gap-8">
-          {engagements.map((e, i) => {
-            // Staggered, non-uniform: alternate the panel width + offset so the column
-            // reads as an editorial stack rather than an equal card grid.
-            const offset =
-              i === 1 ? "md:ml-auto md:mr-0" : i === 2 ? "md:mx-auto" : "md:mr-auto md:ml-0";
-            const widthClass = i === 0 ? "md:max-w-2xl" : i === 1 ? "md:max-w-xl" : "md:max-w-3xl";
-
-            return (
-              <StaggerItem key={e.slug} className={`${widthClass} ${offset} w-full`}>
-                <Card>
-                  <div className="flex items-baseline gap-3">
-                    <span aria-hidden="true" style={{ fontSize: "1.75rem", lineHeight: 1 }}>
-                      {e.emoji}
-                    </span>
-                    <h3 style={{ fontSize: "var(--text-h3)" }}>{e.name}</h3>
+        <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-8 md:mt-16">
+          {engagements.map((e, i) => (
+            <FadeUp key={e.slug} delay={i * 0.08}>
+              <Card>
+                <div className="grid gap-8 md:grid-cols-12 md:gap-10">
+                  {/* LEFT — identity + how + CTAs */}
+                  <div className="md:col-span-5">
+                    <div className="flex items-baseline gap-3">
+                      <span aria-hidden="true" style={{ fontSize: "1.75rem", lineHeight: 1 }}>
+                        {e.emoji}
+                      </span>
+                      <h3
+                        className="font-display font-semibold"
+                        style={{ fontSize: "var(--text-h3)", color: "var(--text-primary)" }}
+                      >
+                        {e.name}
+                      </h3>
+                    </div>
+                    <p
+                      className="mt-3 text-[15px] leading-relaxed"
+                      style={{ color: "var(--accent)", fontWeight: 500 }}
+                    >
+                      {e.tagline}
+                    </p>
+                    <p
+                      className="mt-4 text-[15px] leading-relaxed"
+                      style={{ color: "var(--text-secondary)" }}
+                    >
+                      {e.forWho}
+                    </p>
+                    <p
+                      className="mt-5 border-t pt-5 text-[14px] leading-relaxed"
+                      style={{ color: "var(--text-muted)", borderColor: "var(--border-subtle)" }}
+                    >
+                      {e.how}
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+                      <CtaLink href={e.cta.href} variant="primary">
+                        {e.cta.label}
+                      </CtaLink>
+                      <CtaLink href={`/engagements/${e.slug}`} variant="ghost">
+                        Details →
+                      </CtaLink>
+                    </div>
                   </div>
 
-                  <p
-                    className="mt-3"
-                    style={{ color: "var(--accent)", fontSize: "var(--text-body)", fontWeight: 500 }}
+                  {/* RIGHT — what you get */}
+                  <div
+                    className="md:col-span-7 md:border-l md:pl-10"
+                    style={{ borderColor: "var(--border-subtle)" }}
                   >
-                    {e.tagline}
-                  </p>
-
-                  <p
-                    className="mt-4"
-                    style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
-                  >
-                    {e.forWho}
-                  </p>
-
-                  <ul className="mt-6 flex flex-col gap-3">
-                    {e.whatYouGet.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span
-                          aria-hidden="true"
-                          className="mt-1 shrink-0"
-                          style={{ color: "var(--accent)" }}
+                    <p
+                      className="font-mono text-[11px] uppercase tracking-[0.16em]"
+                      style={{ color: "var(--text-muted)" }}
+                    >
+                      What you get
+                    </p>
+                    <ul className="mt-4 flex flex-col gap-3">
+                      {e.whatYouGet.map((point) => (
+                        <li
+                          key={point}
+                          className="grid grid-cols-[auto_1fr] gap-3 text-[15px] leading-relaxed"
+                          style={{ color: "var(--text-secondary)" }}
                         >
-                          ✓
-                        </span>
-                        <span style={{ color: "var(--text-secondary)" }}>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p
-                    className="mt-6 border-t pt-5"
-                    style={{
-                      color: "var(--text-secondary)",
-                      borderColor: "var(--border-subtle)",
-                      fontSize: "var(--text-body)",
-                    }}
-                  >
-                    {e.how}
-                  </p>
-
-                  <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                    <CtaLink href={e.cta.href} variant="primary">
-                      {e.cta.label}
-                    </CtaLink>
-                    <CtaLink href={`/engagements/${e.slug}`} variant="ghost">
-                      Details →
-                    </CtaLink>
+                          <span aria-hidden="true" className="mt-0.5" style={{ color: "var(--accent)" }}>
+                            ✓
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </Card>
-              </StaggerItem>
-            );
-          })}
-        </Stagger>
+                </div>
+              </Card>
+            </FadeUp>
+          ))}
+        </div>
       </Section>
 
       {/* CAPACITY LADDER — dark / ash — the real constraint, two rungs. */}

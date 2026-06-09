@@ -5,9 +5,9 @@ import CtaLink from "@/components/ui/Button";
 import FadeUp from "@/components/animations/FadeUp";
 import { engagements } from "@/data/site";
 
-// Band 5 — Engagement models. Tone dark, motion orbs, layout = staggered cards (NOT uniform grid).
-// 3 engagement cards, NO price anywhere (design-system §4 #5, §10.9). Vertical offset = staggered.
-const OFFSET = ["lg:mt-0", "lg:mt-12", "lg:mt-0"] as const;
+// Band 5 — Engagement models. Tone dark, motion orbs. EQUAL aligned 3-up grid (symmetry —
+// Error #109; the prior vertical "stagger" offset read as misaligned). 3 cards, NO price.
+const OFFSET = ["lg:mt-0", "lg:mt-0", "lg:mt-0"] as const;
 
 export default function EngagementsSection() {
   return (
