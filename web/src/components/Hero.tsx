@@ -59,6 +59,14 @@ export default function Hero() {
         }}
       />
 
+      {/* Layer 2b — brass rising ash: premium forge embers drifting up through the dark
+          text zone, over the gradient and under the copy. CSS-only, freezes under
+          prefers-reduced-motion (globals). */}
+      <div
+        className="amb-ash pointer-events-none absolute inset-0 z-[6]"
+        aria-hidden="true"
+      />
+
       {/* Layer 3 — content (left) */}
       <motion.div
         variants={stagger}

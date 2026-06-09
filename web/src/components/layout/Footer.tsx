@@ -16,12 +16,26 @@ export default function Footer() {
 
   return (
     <footer
+      className="relative overflow-hidden"
       style={{
         background: "var(--primary)",
         borderTop: "1px solid var(--border-subtle)",
       }}
     >
-      <Container className="py-16 md:py-20 lg:py-24">
+      {/* Premium close — a quiet brass glow rising from the base + drifting ash embers
+          behind the footer chrome (also keeps the footer from reading as a flat fill).
+          CSS-only; ash freezes under prefers-reduced-motion (globals). */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(85% 120% at 50% 118%, rgba(184,134,75,0.13) 0%, transparent 60%)",
+        }}
+        aria-hidden="true"
+      />
+      <div className="amb-ash pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
+
+      <Container className="relative z-10 py-16 md:py-20 lg:py-24">
         {/* Closing statement — signature-style, larger */}
         <p
           className="font-display max-w-3xl font-semibold"

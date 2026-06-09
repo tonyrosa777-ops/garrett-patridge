@@ -84,6 +84,15 @@
 
 ---
 
+### Session 3 — continued (brass rising-ash on the chrome bookends — premium accent)
+**Intent (user):** "add some of that brass colored rising ash in appropriate places to add to the premium theme."
+**Done:** Added the `amb-ash` brass-ember layer to the two UNIVERSAL chrome bookends so every page is framed top + bottom with rising ash, without disturbing the per-section motion rhythm or the ≤3-layer budget:
+- **Hero** — ash layer at `z-[6]` (over the dual-axis gradient, under the copy) so embers drift in the dark headline zone. Subtle (the movie loop already throws real CNC sparks; this adds life specifically in the darkened text zone). Freezes under `prefers-reduced-motion`.
+- **Footer** — was a FLAT `--primary` fill; now `relative overflow-hidden` with (a) a quiet brass radial glow rising from the base `radial-gradient(85% 120% at 50% 118%, rgba(184,134,75,0.13)…)` and (b) an `amb-ash` layer behind the chrome (Container lifted to `relative z-10`). Reads warm + dimensional instead of flat — also quietly fixes the footer's flatness.
+**Why bookends only (not interior sections):** every `<Section>` already carries exactly one ambient motion (one-per-section, ≤3 active layers, adjacent-must-differ). Adding ash to a section means SWAPPING its motion and risks an ash↔ash adjacency clash — so the conflict-free, on-theme spots are the custom chrome (Hero/Footer), which the rhythm map treats as bookends. Homepage now has a brass-ember cadence: Hero(ash) → … → Diagnostic(ash) → … → Footer(ash), all non-adjacent.
+**Soft note (accepted):** on `/diagnostic` the immersive section uses ash+twinkle and the footer also uses ash → an ash↔ash seam. Accepted as deliberate: the footer is visually distinct chrome (brass glow + column layout) and the quiz also runs twinkle, so it reads as continuous premium ambiance, not a duplicated content-section motion. Build clean (37 routes), 0 console errors. Committed + pushed (Always-Push).
+**Files touched:** `web/src/components/Hero.tsx`, `web/src/components/layout/Footer.tsx`.
+
 ### Session 1 — 2026-06-07
 **Intent:** Run /new-client + /prime to take the project from filled research → scaffolded, ready-to-build foundation.
 **Completed:**
