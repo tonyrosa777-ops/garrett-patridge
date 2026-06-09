@@ -229,6 +229,13 @@
 **Current State:** Site LIVE + legibility + blog teaser fixed, all pushed (auto-deploys). 
 **Next (when Anthony is ready):** custom domain garrettpartridge.com; real env vars (Calendly/Resend) for live booking + contact; public-launch trust gate (real testimonials + case-study number + LinkedIn); delete /pricing pre-launch; /retro. Watch for any other small/dim text spots Anthony flags on click-through.
 
+**Continued — live UI polish (deployed each step):**
+- **Radial-gradient depth:** Anthony flagged the gunmetal sections/cards as "plain." Strengthened `.sec-overlay-dark/light` (cool top sheen + brass warmth pools + depth vignette) + new `.card-surface` (lit-top + brass-corner radial, replaces flat `--bg-card` in `<Card>`), then nudged the intensity up another ~40-60% on request. Global — every band + card.
+- **Blog teaser redesign:** secondary cards were a tiny thumb + empty void → now a large full-height image left + vertically-centered bigger text right; featured card untouched (he liked it).
+- **Booking deep-link:** all "Request a Strategic Conversation" CTAs now → `/booking#book`; booking calendar wrapper got `id="book"` + `scroll-mt` so the CTA snaps to the calendar itself, not the page top. (site.ts hrefs + 7 component CtaLinks + the 3 type-literals all updated together.)
+- **Gray-on-gray calendar FIX + documented (Error #107):** `BookingCalendar` was `--bg-card #2A3543` on a gunmetal `tone="light"` band `#222C38` (~1.1:1, auto design fail, client-caught). Now a self-sufficient ELEVATED surface (raised slate `#2F3B49` stepping above BOTH light + dark bands + brighter border + soft elevation shadow + faint brass ring). **Documented cross-project:** `knowledge/errors/gray-widget-surface-same-tone-as-section.md` (#107) + build-log row #107 + a new feedback memory (`widget-surface-tonal-step`) + **filled the process gap**: added an "adjacent-surface contrast check (by eye)" exit-criterion to the browser-audit pattern doc (the `tones` sampler classifies whole bands, not panel-vs-band deltas, so it missed it).
+- All deployed live (latest `4652e39` + gradient/blog commits). Verified each on the production URL via screenshots.
+
 ---
 
 ### Session 2 — continued (Stage 1J /optimus-review — CLEARED; PHASE 1 COMPLETE)
