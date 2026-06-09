@@ -121,14 +121,17 @@ export default function DiagnosticClient() {
         <div className="absolute inset-0 amb-twinkle" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-3xl px-6 md:px-10">
+      {/* Outer container is WIDE (max-w-5xl) so the question grid fills the desktop and the
+          option cards read large; the intro + result constrain their own inner blocks so the
+          hero/copy stay comfortably narrow. */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
         {/* ---------- INTRO ---------- */}
         {phase === "intro" && (
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.4, ease: "easeOut" }}
-            className="text-center"
+            className="mx-auto max-w-3xl text-center"
           >
             <Eyebrow>Operational self-diagnostic</Eyebrow>
             <h1
@@ -201,6 +204,7 @@ export default function DiagnosticClient() {
                 transition={slideTransition}
               >
                 <h1
+                  className="max-w-3xl"
                   style={{
                     fontSize: "var(--text-h2)",
                     lineHeight: 1.15,
@@ -210,7 +214,7 @@ export default function DiagnosticClient() {
                   {QUIZ_QUESTIONS[questionIndex].question}
                 </h1>
 
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="mt-8 grid gap-4 md:mt-10 md:gap-5 sm:grid-cols-2">
                   {/* When idle (not mid-glow), re-highlight the saved answer for this
                       question so back-navigation shows the prior pick (CLAUDE.md contract). */}
                   {QUIZ_QUESTIONS[questionIndex].options.map((opt, optionIndex) => {
@@ -226,7 +230,7 @@ export default function DiagnosticClient() {
                         type="button"
                         onClick={() => selectOption(optionIndex)}
                         disabled={pendingIndex !== null}
-                        className="diag-option rounded p-5 text-left transition-all duration-300 disabled:cursor-default"
+                        className="diag-option rounded-md p-6 text-left transition-all duration-300 disabled:cursor-default md:p-8"
                         style={{
                           background: active
                             ? "color-mix(in srgb, var(--accent) 12%, var(--bg-card))"
@@ -238,14 +242,14 @@ export default function DiagnosticClient() {
                           color: "var(--text-primary)",
                         }}
                       >
-                        <span className="block text-2xl leading-none" aria-hidden="true">
+                        <span className="block text-3xl leading-none md:text-4xl" aria-hidden="true">
                           {opt.emoji}
                         </span>
-                        <span className="mt-3 block text-[15px] font-medium">
+                        <span className="mt-4 block text-[17px] font-semibold md:text-[20px]">
                           {opt.label}
                         </span>
                         <span
-                          className="mt-2 block text-[14px] leading-relaxed"
+                          className="mt-2 block text-[15px] leading-relaxed md:text-[16px]"
                           style={{ color: "var(--text-secondary)" }}
                         >
                           {opt.detail}
