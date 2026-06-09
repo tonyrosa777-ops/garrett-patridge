@@ -109,11 +109,8 @@ export default function ContactPage() {
 
             {/* DFARS-grade privacy posture — the credibility signal for this buyer. */}
             <div
-              className="mt-10 rounded-md p-6"
-              style={{
-                background: "var(--bg-card)",
-                border: "1px solid var(--border-subtle)",
-              }}
+              className="card-surface mt-10 rounded-md border p-6"
+              style={{ borderColor: "var(--border-subtle)" }}
             >
               <p style={{ ...labelStyle, color: "var(--accent)" }}>Privacy posture</p>
               <p
