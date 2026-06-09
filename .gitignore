@@ -22,6 +22,11 @@ web/.env*.local
 # End-of-build audit artifacts (gitignored per the multi-breakpoint audit pattern)
 web/audits/
 
+# Playwright MCP ad-hoc scratch + any loose audit captures dropped at the repo ROOT
+# (real deliverable images live under web/public/, which IS committed — root *.png are scratch)
+.playwright-mcp/
+/*.png
+
 # Higgsfield pilot scratch
 .higgsfield-pilot/
 
@@ -34,3 +39,5 @@ web/.next/
 web/tsconfig.tsbuildinfo
 web/audits-blog/
 .optimus-review/
+
+.vercel
