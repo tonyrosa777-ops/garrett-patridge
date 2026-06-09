@@ -20,7 +20,8 @@ web/.env*.local
 .hero-stills/
 
 # End-of-build audit artifacts (gitignored per the multi-breakpoint audit pattern)
-web/audits/
+# Glob covers every scratch variant: audits/, audits-blog/, audits-1i/, audits-bk/, audits-cal/, ...
+web/audits*/
 
 # Playwright MCP ad-hoc scratch + any loose audit captures dropped at the repo ROOT
 # (real deliverable images live under web/public/, which IS committed — root *.png are scratch)
@@ -37,7 +38,6 @@ Thumbs.db
 web/next-env.d.ts
 web/.next/
 web/tsconfig.tsbuildinfo
-web/audits-blog/
 .optimus-review/
 
 .vercel
