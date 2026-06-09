@@ -215,9 +215,18 @@ export default function BookingCalendar({
   }, [step]);
 
   // ---- shared inline token styles ----
+  // Self-sufficient ELEVATED surface (Error #54 + the gray-on-gray fix): the calendar
+  // renders on a raised slate clearly above BOTH the gunmetal "light" band (#222C38) and
+  // the near-black "dark" band (#0E1116), with a brighter border + a soft elevation shadow
+  // and a faint brass ring, so it reads as a distinct instrument panel on ANY section.
+  // (#2A3543 --bg-card was ~1.1:1 on a light gunmetal band = the gray-on-gray design fail.)
   const panelStyle: React.CSSProperties = {
-    background: "var(--bg-card)",
-    border: "1px solid var(--border-subtle)",
+    background:
+      "radial-gradient(120% 80% at 50% -10%, rgba(208,215,224,0.10) 0%, transparent 55%), " +
+      "radial-gradient(115% 100% at 106% 112%, rgba(184,134,75,0.10) 0%, transparent 60%), " +
+      "#2F3B49",
+    border: "1px solid #4B5765",
+    boxShadow: "0 24px 64px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(184,134,75,0.10)",
     color: "var(--text-primary)",
   };
   const labelStyle: React.CSSProperties = {

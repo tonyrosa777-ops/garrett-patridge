@@ -170,7 +170,7 @@ export default function EngagementsPage() {
             one is running and I respond within 48 hours with a realistic timing window.
           </p>
           <div className="mt-8 flex justify-center">
-            <CtaLink href="/booking" variant="primary">
+            <CtaLink href="/booking#book" variant="primary">
               Request a Strategic Conversation
             </CtaLink>
           </div>

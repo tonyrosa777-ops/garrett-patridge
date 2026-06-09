@@ -189,7 +189,7 @@ export default async function BlogPostPage({
                   the fastest way to pressure-test it against your actual operation.
                 </p>
                 <div className="mt-6">
-                  <CtaLink href="/booking" variant="primary">
+                  <CtaLink href="/booking#book" variant="primary">
                     Request a Strategic Conversation
                   </CtaLink>
                 </div>
@@ -210,7 +210,7 @@ export default async function BlogPostPage({
                 question in front of an operator now, request a strategic conversation.
               </p>
               <div className="mt-6">
-                <CtaLink href="/booking" variant="primary">
+                <CtaLink href="/booking#book" variant="primary">
                   Request a Strategic Conversation
                 </CtaLink>
               </div>

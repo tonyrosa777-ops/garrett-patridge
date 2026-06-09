@@ -196,7 +196,7 @@ export default function TestimonialsClient() {
             conversation and receive a realistic timing window within 48 hours.
           </p>
           <div className="mt-8 flex justify-center">
-            <CtaLink href="/booking" variant="primary">
+            <CtaLink href="/booking#book" variant="primary">
               Request a Strategic Conversation
             </CtaLink>
           </div>

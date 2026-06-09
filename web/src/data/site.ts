@@ -25,7 +25,7 @@ export const siteConfig = {
     tagline: "Predictable operations for high consequence manufacturing.",
     subhead:
       "When the backlog is outrunning cash and the CMMC clock is running, I install the operating system that holds. Across the IT and OT divide, before the auditor ever walks in.",
-    ctaPrimary: { label: "Request a Strategic Conversation", href: "/booking" },
+    ctaPrimary: { label: "Request a Strategic Conversation", href: "/booking#book" },
     ctaSecondary: { label: "Run the operational diagnostic", href: "/diagnostic" },
     microcopy: "A maximum of four concurrent engagements. Response within 48 hours.",
   },
@@ -39,7 +39,7 @@ export const siteConfig = {
     { label: "About", href: "/about" },
     { label: "⬥ Pricing", href: "/pricing", internal: true },
   ],
-  navCta: { label: "Request a Strategic Conversation", href: "/booking" },
+  navCta: { label: "Request a Strategic Conversation", href: "/booking#book" },
 
   contactEmail: "garrett@garrettpartridge.com", // confirm at launch
   location: "Brookline, NH",
@@ -241,7 +241,7 @@ export interface Engagement {
   forWho: string;
   whatYouGet: string[];
   how: string;
-  cta: { label: "Request a Strategic Conversation"; href: "/booking" };
+  cta: { label: "Request a Strategic Conversation"; href: "/booking#book" };
 }
 
 export const engagements: Engagement[] = [
@@ -260,7 +260,7 @@ export const engagements: Engagement[] = [
       "A final recommendations report that names the constraint and the sequence to remove it",
     ],
     how: "Roughly five weeks at twenty hours a week, on-site for the floor work and remote for the analysis. Fixed scope, fixed deliverable.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
   {
     slug: "fractional-coo",
@@ -277,7 +277,7 @@ export const engagements: Engagement[] = [
       "A bridge to the prime relationship, with the credibility that comes from an operator who has been upstream",
     ],
     how: "An ongoing retainer engagement. Near full-time presence in the first 90 days, then a steady fractional cadence as the system holds on its own.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
   {
     slug: "strategic-consultancy",
@@ -294,7 +294,7 @@ export const engagements: Engagement[] = [
       "A future-state operating model the team can run after the engagement closes",
     ],
     how: "Scoped to the event. From a focused, paid, time-boxed working session up to a 30-day stint, structured firm-fixed-price against a defined deliverable.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
 ];
 
@@ -318,7 +318,7 @@ export const diagnosticTeaser: DiagnosticTeaser = {
 export interface CapacityRung {
   label: string;
   detail: string;
-  cta: { label: string; href: "/booking" };
+  cta: { label: string; href: "/booking#book" };
 }
 
 export interface CapacitySection {
@@ -340,13 +340,13 @@ export const capacity: CapacitySection = {
     label: "Full engagement waitlist",
     detail:
       "Fractional COO and 30-Day Triage slots open as engagements reach Phase 3. Request the conversation and name your trigger. I respond within 48 hours.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
   consult: {
     label: "Time-critical? Start with a paid consult, available this week",
     detail:
       "A paid, time-boxed working session on one defined problem, available without waiting for a full slot to open. If a prime letter, a CMMC window, or an LOI is on a clock you do not control, this is the fastest way to put the constraint in front of an operator this week.",
-    cta: { label: "Book a Paid Strategic Consult", href: "/booking" },
+    cta: { label: "Book a Paid Strategic Consult", href: "/booking#book" },
   },
 };
 
@@ -765,7 +765,7 @@ export interface Niche {
   body: string[];
   mechanism: string[];
   forWho: string;
-  cta: { label: string; href: "/booking" };
+  cta: { label: string; href: "/booking#book" };
 }
 
 export const niches: Niche[] = [
@@ -787,7 +787,7 @@ export const niches: Niche[] = [
     ],
     forWho:
       "Owners and GMs of NH and MA contract manufacturers, build-to-print or build-to-spec, who serve a prime and just felt the clock get real.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
   {
     slug: "onshoring",
@@ -807,7 +807,7 @@ export const niches: Niche[] = [
     ],
     forWho:
       "Foreign manufacturers, often Canadian, UK, or Israeli parented, racing a gate to qualify a US subsidiary for defense work.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
   {
     slug: "pe-operating-partner",
@@ -828,7 +828,7 @@ export const niches: Niche[] = [
     ],
     forWho:
       "PE operating partners and deal teams running manufacturing diligence on a tight clock, who need an operator's read before the number is final.",
-    cta: { label: "Request a Strategic Conversation", href: "/booking" },
+    cta: { label: "Request a Strategic Conversation", href: "/booking#book" },
   },
 ];
 
@@ -1079,7 +1079,7 @@ export const footer: FooterData = {
         { label: "Method", href: "/method" },
         { label: "Engagements", href: "/engagements" },
         { label: "Operational diagnostic", href: "/diagnostic" },
-        { label: "Request a Strategic Conversation", href: "/booking" },
+        { label: "Request a Strategic Conversation", href: "/booking#book" },
       ],
     },
     {

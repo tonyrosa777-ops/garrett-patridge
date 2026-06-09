@@ -260,7 +260,7 @@ export default function MethodPage() {
                   <CtaLink href={diagnosticTeaser.cta.href} variant="secondary">
                     {diagnosticTeaser.cta.label}
                   </CtaLink>
-                  <CtaLink href="/booking" variant="primary">
+                  <CtaLink href="/booking#book" variant="primary">
                     Request a Strategic Conversation
                   </CtaLink>
                 </div>

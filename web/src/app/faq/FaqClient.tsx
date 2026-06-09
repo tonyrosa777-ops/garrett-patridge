@@ -164,7 +164,7 @@ export default function FaqClient() {
             {diagnosticTeaser.statement}
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <CtaLink href="/booking" variant="primary">
+            <CtaLink href="/booking#book" variant="primary">
               Request a Strategic Conversation
             </CtaLink>
             <CtaLink href={diagnosticTeaser.cta.href} variant="secondary">

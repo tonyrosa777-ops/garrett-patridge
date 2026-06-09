@@ -70,8 +70,11 @@ export default function BookingPage() {
             ))}
           </div>
 
-          {/* The conversion — custom branded scheduler, self-sufficient surface. */}
-          <div className="mt-12 w-full max-w-2xl text-left">
+          {/* The conversion — custom branded scheduler, self-sufficient surface.
+              id="book" is the deep-link target so the hero/nav "Request a Strategic
+              Conversation" CTAs (/booking#book) snap straight to the calendar; the
+              scroll-mt clears the fixed nav so it isn't tucked underneath. */}
+          <div id="book" className="mt-12 w-full max-w-2xl scroll-mt-28 text-left md:scroll-mt-32">
             <BookingCalendar />
           </div>
         </div>
