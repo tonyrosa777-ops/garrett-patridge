@@ -39,7 +39,7 @@ export const siteConfig = {
     { label: "About", href: "/about" },
     { label: "⬥ Pricing", href: "/pricing", internal: true },
   ],
-  navCta: { label: "Request a Strategic Conversation", href: "/booking#book" },
+  navCta: { label: "Request a Conversation", href: "/booking#book" },
 
   contactEmail: "garrett@garrettpartridge.com", // confirm at launch
   location: "Brookline, NH",

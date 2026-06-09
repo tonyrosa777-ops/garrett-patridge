@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import CtaLink from "@/components/ui/Button";
 import BookingCalendar from "@/components/BookingCalendar";
@@ -88,13 +88,40 @@ export default function DiagnosticClient() {
   const slideTransition = { duration: reduceMotion ? 0 : 0.32, ease: "easeOut" as const };
 
   return (
-    <Section
-      tone="dark"
-      motion="ash"
-      className="min-h-[100svh] flex items-center pt-28 md:pt-36"
-      containerClassName="max-w-3xl"
+    <section
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden py-16 pt-28 md:py-24 md:pt-36"
+      style={{ background: "var(--primary)" }}
     >
-      <div className="w-full">
+      {/* Immersive backdrop (full-page-archetype quiz standard / Enchanted Madison reference):
+          a LOW-OPACITY defense shop-floor brand image → contrast scrim + depth vignette →
+          brass radial glow → a hero-grade rising-ash + twinkle particle stack. Never flat. */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="/images/blog/hidden-factory-find-it-in-30-days-header.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ opacity: 0.3 }}
+        />
+        {/* Scrim — keeps the floor visible at center but darkens to a premium vignette so the
+            centered copy holds 4.5:1+ contrast over the image. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(135% 105% at 50% 30%, rgba(14,17,22,0.30) 0%, rgba(14,17,22,0.74) 55%, rgba(14,17,22,0.90) 100%)",
+          }}
+        />
+        {/* Brass radial glow — same language as every Section. */}
+        <div className="absolute inset-0 sec-overlay-dark" />
+        {/* Hero-grade particle stack: rising ash + low-density twinkles. */}
+        <div className="absolute inset-0 amb-ash" />
+        <div className="absolute inset-0 amb-twinkle" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-3xl px-6 md:px-10">
         {/* ---------- INTRO ---------- */}
         {phase === "intro" && (
           <motion.div
@@ -111,11 +138,15 @@ export default function DiagnosticClient() {
               Find the constraint that is costing you the most.
             </h1>
             <p
-              className="mx-auto mt-6 max-w-xl"
-              style={{ color: "var(--text-secondary)", fontSize: "var(--text-body)" }}
+              className="mx-auto mt-6 max-w-2xl leading-relaxed"
+              style={{
+                color: "var(--text-primary)",
+                fontSize: "clamp(1.125rem, 1.8vw, 1.375rem)",
+              }}
             >
-              Six questions name the fault you are actually fighting. No email, no
-              follow-up sequence. The result restates your own situation back to you.
+              Six questions, about two minutes. You will name the fault you are actually
+              fighting and see the one move that frees the most capacity. No email, no
+              follow-up sequence. The result is yours, right here on the screen.
             </p>
             <div className="mt-10 flex justify-center">
               <button
@@ -215,7 +246,7 @@ export default function DiagnosticClient() {
                         </span>
                         <span
                           className="mt-2 block text-[14px] leading-relaxed"
-                          style={{ color: "var(--text-muted)" }}
+                          style={{ color: "var(--text-secondary)" }}
                         >
                           {opt.detail}
                         </span>
@@ -271,8 +302,8 @@ export default function DiagnosticClient() {
 
             {/* Recommended starting line */}
             <div
-              className="mx-auto mt-10 max-w-2xl rounded-md p-6 md:p-8"
-              style={{ background: "var(--bg-card)", border: "1px solid var(--border-subtle)" }}
+              className="card-surface mx-auto mt-10 max-w-2xl rounded-md p-6 md:p-8"
+              style={{ border: "1px solid var(--border-subtle)" }}
             >
               <p
                 style={{
@@ -322,6 +353,6 @@ export default function DiagnosticClient() {
           </motion.div>
         )}
       </div>
-    </Section>
+    </section>
   );
 }

@@ -221,9 +221,8 @@ export default function PricingClient() {
               className="relative flex"
             >
               <div
-                className="card-hover flex w-full flex-col rounded-md border p-6 md:p-8"
+                className="card-surface card-hover flex w-full flex-col rounded-md border p-6 md:p-8"
                 style={{
-                  background: "var(--bg-card)",
                   borderColor: tier.recommended ? "var(--accent)" : "var(--border-subtle)",
                 }}
               >
@@ -330,8 +329,8 @@ export default function PricingClient() {
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {/* Controls */}
           <div
-            className="rounded-md border p-6 md:p-8"
-            style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+            className="card-surface rounded-md border p-6 md:p-8"
+            style={{ borderColor: "var(--border-subtle)" }}
           >
             {/* Engagement value slider */}
             <div>
@@ -433,8 +432,8 @@ export default function PricingClient() {
                 key={r.label}
                 animate={{ opacity: [0.6, 1] }}
                 transition={{ duration: 0.3 }}
-                className="rounded-md border p-6"
-                style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+                className="card-surface rounded-md border p-6"
+                style={{ borderColor: "var(--border-subtle)" }}
               >
                 <p style={monoLabel}>{r.label}</p>
                 <p
@@ -466,8 +465,8 @@ export default function PricingClient() {
         </div>
 
         <div
-          className="mt-10 overflow-x-auto rounded-md border"
-          style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+          className="card-surface mt-10 overflow-x-auto rounded-md border"
+          style={{ borderColor: "var(--border-subtle)" }}
         >
           <table className="w-full border-collapse text-left" style={{ minWidth: 560 }}>
             <thead>

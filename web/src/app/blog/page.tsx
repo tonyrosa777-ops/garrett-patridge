@@ -102,11 +102,18 @@ export default function BlogIndexPage() {
           <Eyebrow>Featured briefing</Eyebrow>
           <Link
             href={`/blog/${featured.slug}`}
-            className="card-hover mt-5 grid gap-8 rounded-md border p-6 md:p-8 lg:grid-cols-12 lg:gap-12"
-            style={{ background: "var(--bg-card)", borderColor: "var(--border-subtle)" }}
+            className="card-surface card-hover mt-5 grid gap-8 rounded-md border p-6 md:p-8 lg:grid-cols-12 lg:gap-12"
+            style={{ borderColor: "var(--border-subtle)" }}
           >
-            <div className="lg:col-span-6">
-              <CardImage slug={featured.slug} alt={featured.title} ratio="aspect-[3/2]" />
+            {/* Image fills its column on lg (lg:h-full + aspect-auto) so it matches the
+                text column height — balanced 2-col, no dead space below the image (Rule G).
+                On mobile it keeps the 3:2 ratio. */}
+            <div className="lg:col-span-6 lg:h-full">
+              <CardImage
+                slug={featured.slug}
+                alt={featured.title}
+                ratio="aspect-[3/2] lg:aspect-auto lg:h-full lg:min-h-[300px]"
+              />
             </div>
             <div className="flex flex-col justify-center lg:col-span-6">
               <p
@@ -115,7 +122,13 @@ export default function BlogIndexPage() {
               >
                 {featured.category}
               </p>
-              <h2 className="mt-3" style={{ fontSize: "var(--text-h2)", lineHeight: 1.15 }}>
+              {/* h3 size + 3-line clamp: keeps the card compact enough to sit fully below
+                  the fixed nav (long SEO titles were ~5 lines at h2 → the card scrolled
+                  half under the navbar). The full title still fits in 3 lines here. */}
+              <h2
+                className="mt-3 line-clamp-3"
+                style={{ fontSize: "var(--text-h3)", lineHeight: 1.2 }}
+              >
                 {featured.title}
               </h2>
               <p
@@ -137,14 +150,20 @@ export default function BlogIndexPage() {
           </Link>
         </FadeUp>
 
-        {/* The rest — 3-col grid. 11 cards → fills 3 cols cleanly (no orphan: 11 = 3+3+3+2,
-            last row of 2 is acceptable; on lg the grid auto-flows and the trailing 2 sit
-            left-aligned. No empty/ghost cells are rendered). */}
+        {/* The rest — equal-width cards, flex-wrap + justify-center so any trailing
+            partial row CENTERS (balanced whitespace, never a lopsided right-void).
+            11 cards → 3+3+3+2 with the final pair centered (Error #63/#71 fix: an
+            orphan row left-aligned reads as a mistake; centered reads intentional).
+            Basis math matches the gap so full rows are flush; box-sizing:border-box
+            (globals) keeps 3-up exact. */}
         <div className="mt-16">
           <Eyebrow>The full slate</Eyebrow>
-          <Stagger className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-6 flex flex-wrap justify-center gap-6">
             {rest.map((post) => (
-              <StaggerItem key={post.slug} className="h-full">
+              <StaggerItem
+                key={post.slug}
+                className="h-full basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
+              >
                 <Link href={`/blog/${post.slug}`} className="block h-full">
                   <Card className="flex h-full flex-col">
                     <CardImage slug={post.slug} alt={post.title} ratio="aspect-[3/2]" />

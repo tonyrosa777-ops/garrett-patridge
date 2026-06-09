@@ -59,30 +59,33 @@ export default function SiteHeader() {
           {name}
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Desktop nav — appears at lg (1024px). Below that the 6 links + CTA cannot
+            fit one row, so 768–1023 uses the mobile drawer instead (Error: nav crowding
+            at md — "Who I Serve" + the CTA wrapped to two lines and collided). nowrap on
+            every item + gap-6 (xl:gap-8) keeps it a single flush row from 1024 up. */}
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
           {nav.map((linkItem) => {
             const internal = "internal" in linkItem && linkItem.internal === true;
             return (
               <Link
                 key={linkItem.href}
                 href={linkItem.href}
-                className="btn-ghost text-[15px]"
+                className="btn-ghost whitespace-nowrap text-[15px]"
                 style={internal ? { color: "var(--accent)" } : undefined}
               >
                 {linkItem.label}
               </Link>
             );
           })}
-          <CtaLink href={navCta.href} variant="primary">
+          <CtaLink href={navCta.href} variant="primary" className="whitespace-nowrap">
             {navCta.label}
           </CtaLink>
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — shown below lg (covers the 768–1023 crowding zone too) */}
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center lg:hidden"
           aria-label="Open navigation menu"
           aria-expanded={open}
           onClick={() => setOpen(true)}
@@ -107,7 +110,7 @@ export default function SiteHeader() {
       {/* Mobile drawer — DARK, fully opaque overlay (Enchanted Madison transparent-overlay bug). */}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex flex-col md:hidden"
+          className="fixed inset-0 z-50 flex flex-col lg:hidden"
           style={{ background: "var(--primary)" }}
         >
           <div className="flex h-20 items-center justify-between px-6">
